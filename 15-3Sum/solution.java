@@ -11,53 +11,79 @@
  * 
  */ 
 public class Solution {
+    // public List<List<Integer>> threeSum(int[] nums) {
+    //     List<List<Integer>> result = new ArrayList<>();
+        
+    //     //corner case
+    //     if(nums == null || nums.length < 3) return result;
+        
+    //     //sort array
+    //     Arrays.sort(nums);
+        
+    //     // a + b + c = 0 => a + b = -c, so let tar = -c for all elements in nums, 
+    //     // then find a and b that a + b = - c => reduced to 2-sum problem
+    //     for(int i = 0; i < nums.length - 2; i ++) {
+    //         if( i==0 || nums[i] != nums[i-1]) {
+    //             int tar = nums[i] * (-1);
+    //             int j = i + 1; //  bugs here;
+    //             int k = nums.length - 1;
+                
+    //             //traverse all elements left except for nums[i], find a + b = tar
+    //             // if nums[j] + nums[k] > tar, move k to left,
+    //             // if nums[j] + nums[k] < tar, move j to right,
+    //             // if i + j = tar, sort i, j, k value, add to result;
+                
+    //             while(j < k){
+    //                 if(nums[j] + nums[k] > tar) {
+    //                     k--;
+    //                 }else if(nums[j] + nums[k] < tar){
+    //                     j++;
+    //                 }else{
+    //                     List<Integer> list = new ArrayList<>();
+    //                     list.add(nums[i]);
+    //                     list.add(nums[j]);
+    //                     list.add(nums[k]);
+                        
+    //                     result.add(list);
+                        
+    //                     j++;
+    //                     k--;
+                        
+    //                     while(j<k && nums[j] == nums[j-1])//remove dupicate
+    //                         j ++;
+    //                     while(j<k && nums[k] == nums[k +1])//remove dupicate
+    //                         k --;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return result;
+    // }
+    
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        
-        //corner case
         if(nums == null || nums.length < 3) return result;
-        
-        //sort array
         Arrays.sort(nums);
-        
-        // a + b + c = 0 => a + b = -c, so let tar = -c for all elements in nums, 
-        // then find a and b that a + b = - c => reduced to 2-sum problem
-        for(int i = 0; i < nums.length - 2; i ++) {
-            if( i==0 || nums[i] != nums[i-1]) {
-                int tar = nums[i] * (-1);
-                int j = i + 1; //  bugs here;
-                int k = nums.length - 1;
-                
-                //traverse all elements left except for nums[i], find a + b = tar
-                // if nums[j] + nums[k] > tar, move k to left,
-                // if nums[j] + nums[k] < tar, move j to right,
-                // if i + j = tar, sort i, j, k value, add to result;
-                
-                while(j < k){
-                    if(nums[j] + nums[k] > tar) {
-                        k--;
-                    }else if(nums[j] + nums[k] < tar){
-                        j++;
-                    }else{
-                        List<Integer> list = new ArrayList<>();
-                        list.add(nums[i]);
-                        list.add(nums[j]);
-                        list.add(nums[k]);
-                        
-                        result.add(list);
-                        
-                        j++;
-                        k--;
-                        
-                        while(j<k && nums[j] == nums[j-1])//remove dupicate
-                            j++;
-                        while(j<k && nums[k] == nums[k +1])//remove dupicate
-                            k --;
-                    }
+    
+        int len = nums.length;
+        for(int i = 0; i < len; i++) {
+            if(i > 0 && nums[i] == nums[i - 1]) continue;        // Skip same results
+            int target = 0 - nums[i];
+            int j = i + 1, k = len - 1;
+            while(j < k) {
+                if(nums[j] + nums[k] == target) {
+                    result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    while(j < k && nums[j] == nums[j + 1]) j++;  // Skip same results
+                    while(j < k && nums[k] == nums[k - 1]) k--;  // Skip same results
+                    j++; k--;
+                } else if(nums[j] + nums[k] < target) {
+                    j++;
+                } else {
+                    k--;
                 }
             }
         }
         return result;
-        
     }
+        
 }
