@@ -1,40 +1,41 @@
 public class Solution {
-    
-    //similar to 3sum, a + b + c = sum -> a + b = sum - c , let distance = abs(target - (a + b)), find min(distance)
-    public int threeSumClosest(int[] nums, int sum) {
+    public int threeSumClosest(int[] nums, int target) {
         if(nums == null || nums.length < 3) return 0;
-            
+        
+        // a + b + c = sum,  if sum > target, move high to left, if sum < target, move low to right, 
+        
+        //始终记住，要维护和返回的变量，放在外边
         Arrays.sort(nums);
-                
-        int min = Integer.MAX_VALUE;
+        int closet = Integer.MAX_VALUE;
         int res = 0;
         
         for(int i = 0; i < nums.length - 2; i++) {
-            int target = sum - nums[i];
-            int j = i + 1;
-            int k = nums.length - 1;
+            int low = i + 1;
+            int high = nums.length - 1;
             
-            // do two sum, target, and a + b = target, a go right, b go left, revise the dis
-            while(j < k){
-                int ss = nums[j] + nums[k];
-                int dis = Math.abs(target - (nums[j] + nums[k]));
+            while(low < high){
+                int sum = nums[i] + nums[low] + nums[high];
+                int distance = Math.abs(sum - target);
                 
-                if(dis < min){ //update min and result
-                    min = dis;
-                    res = nums[i] + nums[j] + nums[k];
-                }       
-                
-                if(ss > target){
-                    k--;
-                }else if(ss < target){
-                    j++;
-                }else{
-                    return res;
+                // if distance < closet, update the closet, and also update the return value
+                if(distance < closet){
+                    closet = distance;
+                    res = sum;
                 }
-          
+                
+                if(sum < target){
+                    low++;
+                }else if(sum > target){
+                    high--;
+                }else{ // sum = target
+                    return sum;
+                }
             }
             
+            
         }
+        
         return res;
+    
     }
 }
