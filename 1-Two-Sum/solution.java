@@ -1,4 +1,6 @@
 public class Solution{
+	//this is for something to commit
+
 	public int[] twoSum(int[] nums, int target){
 		HashMap<Integer, Integer> map = new HashMap<>();
 		int[] result = new int[2];
