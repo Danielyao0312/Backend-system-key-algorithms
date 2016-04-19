@@ -24,15 +24,8 @@ public class Solution {
                 }
 
             }
-
         }
-
-        // if(A[start] == target){
-        //     return start;
-        // }
-        // else if(A[end] == target){
-        //     return end;
-        // }
-         return -1;
+        
+        return -1;
     }
 }
