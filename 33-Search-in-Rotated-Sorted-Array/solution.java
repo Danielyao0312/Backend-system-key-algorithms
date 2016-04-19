@@ -6,33 +6,33 @@ public class Solution {
         
         int start = 0;
         int end = A.length - 1;
-        while(start + 1 < end) {
+        while(start <= end) {
             int mid = start + (end - start)/2;
             if(target == A[mid]) return mid;
 
             if(A[mid] >= A[start]){
                 if(A[start] <= target && target <= A[mid]){
-                    end = mid;
+                    end = mid - 1;
                 }else{
-                    start = mid;
+                    start = mid + 1;
                 }
             }else{
                 if (A[mid] <= target && target <= A[end]) {
-                    start = mid;
+                    start = mid + 1;
                 }else{
-                    end = mid;
+                    end = mid - 1;
                 }
 
             }
 
         }
 
-        if(A[start] == target){
-            return start;
-        }
-        else if(A[end] == target){
-            return end;
-        }
-        else return -1;
+        // if(A[start] == target){
+        //     return start;
+        // }
+        // else if(A[end] == target){
+        //     return end;
+        // }
+         return -1;
     }
 }
