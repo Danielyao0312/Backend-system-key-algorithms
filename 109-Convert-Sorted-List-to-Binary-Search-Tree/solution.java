@@ -16,7 +16,7 @@
  * }
  */
 public class Solution {
-    // use top down (pre order solution)
+    // solution 1:  use top down (pre order solution) 
     public TreeNode sortedListToBST(ListNode head) {
         //base case:
         if(head == null)    return null;
@@ -27,7 +27,7 @@ public class Solution {
         ListNode fast = head;
         ListNode pre = null; 
         while(fast != null && fast.next != null) {
-            pre = slow;
+            pre = slow; // pre to find the node just before the root node
             fast = fast.next.next;
             slow = slow.next;
         }
@@ -36,7 +36,7 @@ public class Solution {
         TreeNode root = new TreeNode(slow.val);
         ListNode rightList = slow.next;
         slow.next = null;
-        pre.next = null;
+        pre.next = null; // !! important
         
         root.left = sortedListToBST(head);
         root.right = sortedListToBST(rightList);
