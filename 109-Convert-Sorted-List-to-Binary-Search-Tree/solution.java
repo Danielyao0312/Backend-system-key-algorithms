@@ -36,7 +36,7 @@ public class Solution {
         TreeNode root = new TreeNode(slow.val);
         ListNode rightList = slow.next;
         slow.next = null;
-        pre.next = null; // !! important
+        if (pre != null)   pre.next = null; // !! important
         
         root.left = sortedListToBST(head);
         root.right = sortedListToBST(rightList);
