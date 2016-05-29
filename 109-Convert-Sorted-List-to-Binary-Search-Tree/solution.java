@@ -30,7 +30,7 @@ public class Solution {
         ListNode slow = head;
         ListNode fast = head;
         ListNode pre = null;
-        while(fast.next != null && fast.next.next != null) {
+        while(fast != null && fast.next != null) {
             pre = slow;
             fast = fast.next.next;
             slow = slow.next;
@@ -39,10 +39,10 @@ public class Solution {
         TreeNode root = new TreeNode(slow.val);
         ListNode rightList = slow.next;
         slow.next = null;
-        if(pre != null) {
+        // if(pre != null) {
             pre.next = null;
             root.left = helper(head);
-        }
+        // }
         root.right = helper(rightList);
         
         return root;
