@@ -16,7 +16,7 @@
  * }
  */
 public class Solution {
-    // use bottom up solution to build the tree
+    // use top down (pre order solution)
     public TreeNode sortedListToBST(ListNode head) {
         return helper(head);
     }
@@ -29,7 +29,7 @@ public class Solution {
         //use slow and fast pointer to find the root node
         ListNode slow = head;
         ListNode fast = head;
-        ListNode pre = null;
+        ListNode pre = null; 
         while(fast != null && fast.next != null) {
             pre = slow;
             fast = fast.next.next;
@@ -38,11 +38,10 @@ public class Solution {
         
         TreeNode root = new TreeNode(slow.val);
         ListNode rightList = slow.next;
-        slow.next = null;
-        // if(pre != null) {
-            pre.next = null;
-            root.left = helper(head);
-        // }
+        // slow.next = null;
+        pre.next = null;
+        
+        root.left = helper(head);
         root.right = helper(rightList);
         
         return root;
