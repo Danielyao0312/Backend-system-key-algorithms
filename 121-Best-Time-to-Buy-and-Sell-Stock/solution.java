@@ -8,8 +8,8 @@ public class Solution {
         
         for(int i = 1; i < prices.length; i ++) {
             int cur = prices[i];
-            maxProfit = Math.max(maxProfit, cur - sofarMin);
             if(cur < sofarMin)      sofarMin = cur;
+            maxProfit = Math.max(maxProfit, cur - sofarMin);
         }
         
         return maxProfit;
