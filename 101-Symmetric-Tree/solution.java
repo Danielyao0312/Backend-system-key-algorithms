@@ -20,7 +20,10 @@ public class Solution {
         if(p == null && q == null) return true;
         if( (p == null && q != null) || (p != null && q == null) ) return false;
         
-        return (p.val == q.val) && (isSymmetricTree(p.left, q.right)) && (isSymmetricTree(p.right, q.left));
+        if(p.val != q.val)  
+            return false;
+        else 
+            return isSymmetricTree(p.left, q.right) && isSymmetricTree(p.right, q.left);
         
     }
 }
