@@ -66,7 +66,6 @@ public class Solution {
         };
     */
     
-    static ListNode chead = null;
     
     public TreeNode sortedListToBST(ListNode head) {
         int len = 0;
@@ -75,17 +74,18 @@ public class Solution {
             len ++;
             cur = cur.next;
         }
-        chead = head;
+        ListNode[] chead = new ListNode[1]; // 用数组，解决了 java 中copy by value 的问题
+        chead[0] = head;
         return build(chead, 0, len - 1);
     }
     
-    private TreeNode build(ListNode head, int start, int end) {
+    private TreeNode build(ListNode[] chead, int start, int end) {
         if(start > end)     return null;
         
         int mid = start + (end - start) / 2;
         TreeNode left = build(chead, start, mid - 1);
-        TreeNode root = new TreeNode(chead.val);
-        chead = chead.next;
+        TreeNode root = new TreeNode(chead[0].val);
+        chead[0] = chead[0].next;
         TreeNode right = build(chead, mid + 1, end);
         
         root.left = left;
