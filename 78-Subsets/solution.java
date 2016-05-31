@@ -11,7 +11,8 @@ public class Solution {
 		return res;
     }
 
-    private void helper(List<List<Integer>> res, List<Integer> subres, int[] nums, int pos){
+    private void helper(List<List<Integer>> res, List<Integer> subres, int[] nums, int pos){ 
+        // pos的作用是避免 123 132这种重复的情况产生，保证按照递增的顺序，进行递归
     	res.add(new ArrayList<Integer>(subres));
 
     	for(int i = pos; i < nums.length; i++) {
