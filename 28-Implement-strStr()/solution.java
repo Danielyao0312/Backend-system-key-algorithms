@@ -3,6 +3,7 @@
 
 public class Solution{
 	public int strStr(String str, String target) {
+	    if(str == null || target == null)   return -1;
 		int slen = str.length();
 		int tlen = target.length();
 
