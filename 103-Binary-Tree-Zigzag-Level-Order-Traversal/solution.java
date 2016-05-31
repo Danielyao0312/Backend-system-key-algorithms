@@ -15,28 +15,30 @@ public class Solution {
         
         if(root == null)    return res;
         
-        boolean reverse = false;
+        boolean reverse = false; // a flag
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
         
         while(!q.isEmpty()) {
             int size = q.size();
             List<Integer> subres = new ArrayList<>();
+            
             for(int i = 0; i < size; i++) {
                 TreeNode cur = q.poll();
+                subres.add(cur.val);
+                
                 if(cur.left != null)    q.add(cur.left);
                 if(cur.right != null)   q.add(cur.right);
-                subres.add(cur.val);
             }
             
-            if(reverse == false) {
-                res.add(subres);
-                reverse = true;
-            }else{
+            if(reverse) {
                 Collections.reverse(subres);
-                res.add(subres);
                 reverse = false;
+            }else{
+                reverse = true;
             }
+            
+            res.add(subres);
         }
         
         return res;
