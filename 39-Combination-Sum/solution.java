@@ -21,8 +21,7 @@ public class Solution {
             if(nums[i] > target)    return;
             
             list.add(nums[i]);
-            int subtar = target - list.get(list.size() - 1);
-            dfs(res, list, nums, subtar, i);
+            dfs(res, list, nums, target - nums[i], i);
             list.remove(list.size() - 1);
         }
     }
