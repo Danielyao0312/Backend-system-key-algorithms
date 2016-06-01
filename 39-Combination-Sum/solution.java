@@ -15,11 +15,11 @@ public class Solution {
         if(target == 0) {
             res.add(new ArrayList<Integer>(list));
             return;
+        }else if(target < 0) {
+            return;
         }
         
         for(int i = pos; i < nums.length; i++) {
-            if(nums[i] > target)    return; // !!! key point
-            
             list.add(nums[i]);
             dfs(res, list, nums, target - nums[i], i);
             list.remove(list.size() - 1);
