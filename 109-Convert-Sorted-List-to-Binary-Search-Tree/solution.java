@@ -33,7 +33,7 @@ public class Solution {
         TreeNode root = new TreeNode(0);
         root.left = buildTree(n / 2);
         root.val = cur.val;
-        cur = cur.next;
+        cur = cur.next;  // !!! key point
         root.right = buildTree(n - n / 2 - 1);
         return root;
     }
