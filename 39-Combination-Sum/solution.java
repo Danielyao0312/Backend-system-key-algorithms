@@ -21,8 +21,7 @@ public class Solution {
         
         for(int i = pos; i < nums.length; i++) {
             list.add(nums[i]);
-            int subtarget = target - nums[i];
-            dfs(res, list, nums, subtarget, i);
+            dfs(res, list, nums, target - nums[i], i);
             list.remove(list.size() - 1);
         }
     }
