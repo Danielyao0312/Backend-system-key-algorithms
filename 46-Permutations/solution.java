@@ -3,6 +3,7 @@ public class Solution {
     //2.crack the question: search for ALL POSSIBLE results -> dfs solution -> backtracking
     //  dfs question -> using a helper function, recursive solve the problem
     //3.corner cases: nums == null
+    
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> subres = new ArrayList<>();
@@ -17,6 +18,7 @@ public class Solution {
         
         if(subres.size() == nums.length){
             res.add(new ArrayList<Integer>(subres));
+            // res.add(subres);
             return;
         }
         for(int i = 0; i < nums.length; i++) {
