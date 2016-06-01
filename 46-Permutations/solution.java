@@ -19,12 +19,12 @@ public class Solution {
             res.add(new ArrayList<Integer>(subres));
             return;
         }
-        
         for(int i = 0; i < nums.length; i++) {
-            if(subres.contains(nums[i]))    continue;
-            subres.add(nums[i]);
-            helper(res, subres, nums);
-            subres.remove(subres.size() - 1);
+            if(!subres.contains(nums[i])) {
+                subres.add(nums[i]);
+                helper(res, subres, nums);
+                subres.remove(subres.size() - 1);
+            }
         }
         
     }
