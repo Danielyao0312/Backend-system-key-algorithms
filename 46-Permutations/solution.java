@@ -15,16 +15,17 @@ public class Solution {
     
     private void helper(List<List<Integer>> res, List<Integer> subres, int[] nums) {
         
-        if(subres.size() == nums.length){
-            res.add(new ArrayList<Integer>(subres));
-            return;
-        }
+        
         
         for(int i = 0; i < nums.length; i++) {
             if(subres.contains(nums[i]))    continue;
             subres.add(nums[i]);
             helper(res, subres, nums);
             subres.remove(subres.size() - 1);
+        }
+        if(subres.size() == nums.length){
+            res.add(new ArrayList<Integer>(subres));
+            return;
         }
     }
 }
