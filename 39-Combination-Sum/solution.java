@@ -18,7 +18,7 @@ public class Solution {
         }
         
         for(int i = pos; i < nums.length; i++) {
-            if(nums[i] > target)    return;
+            if(nums[i] > target)    return; // !!! key point
             
             list.add(nums[i]);
             dfs(res, list, nums, target - nums[i], i);
