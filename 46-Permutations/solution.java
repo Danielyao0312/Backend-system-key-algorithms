@@ -17,6 +17,7 @@ public class Solution {
         
         if(subres.size() == nums.length){
             res.add(new ArrayList<Integer>(subres));
+            return;
         }
         
         for(int i = 0; i < nums.length; i++) {
