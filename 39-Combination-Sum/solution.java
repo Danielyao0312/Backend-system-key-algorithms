@@ -15,7 +15,7 @@ public class Solution {
         if(target == 0) {
             res.add(new ArrayList<Integer>(list));
             return;
-        }else if(target < 0) {
+        }else if(target < 0) { // key point!!!
             return;
         }
         
