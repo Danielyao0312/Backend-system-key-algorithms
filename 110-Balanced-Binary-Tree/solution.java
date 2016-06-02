@@ -12,7 +12,7 @@
 
 public class Solution {
     public boolean isBalanced(TreeNode root) {
-        return dfsHeight(root) != -1;
+        return dfsHeight(root) >= 0;
     }
     
     public int dfsHeight(TreeNode root){
