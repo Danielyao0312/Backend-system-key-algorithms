@@ -13,10 +13,10 @@ public class BSTIterator {
     private Stack<TreeNode> stack = new Stack<>();
 
     public BSTIterator(TreeNode root) {
-        pushLeftChildrent(root);
+        pushLeftChildren(root);
     }
     
-    private void pushLeftChildrent(TreeNode cur) {
+    private void pushLeftChildren(TreeNode cur) {
         while(cur != null) {
             stack.push(cur);
             cur = cur.left;
@@ -30,11 +30,9 @@ public class BSTIterator {
 
     /** @return the next smallest number */
     public int next() {
-        
+
         TreeNode cur = stack.pop();
-        if(cur.right != null) {
-            pushLeftChildrent(cur.right);
-        }
+        pushLeftChildren(cur.right);
         return cur.val;
     }
 }
