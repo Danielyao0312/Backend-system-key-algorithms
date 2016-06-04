@@ -15,13 +15,13 @@ public class Solution {
         TreeNode parent = root;
         
         while(parent.val != p.val) {
-            if(parent == null)  return lastLeftTurned;
             if(p.val < parent.val) {
                 lastLeftTurned = parent;
                 parent = parent.left;
             }else {
                 parent = parent.right;
             }
+            if(parent == null)  return lastLeftTurned;
         }
 
         if(parent.right != null) {
