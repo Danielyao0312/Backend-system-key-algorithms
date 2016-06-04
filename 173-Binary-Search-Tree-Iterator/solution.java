@@ -8,22 +8,21 @@
  * }
  */
 
-
 public class BSTIterator {
-    private Stack<TreeNode> stack = new Stack<>();
-    
-    public BSTIterator(TreeNode root) {
-        pushLeftChildren(root); // find the first node (leftmost) to start, and store the trace
-    }
 
-    // push all the left subnodes to stack until reaching the first node in inorder (the leftmost node)
-    private void pushLeftChildren(TreeNode curr) {
-        while (curr != null) {
-            stack.add(curr);
-            curr = curr.left;
+    private Stack<TreeNode> stack = new Stack<>();
+
+    public BSTIterator(TreeNode root) {
+        pushLeftChildrent(root);
+    }
+    
+    private void pushLeftChildrent(TreeNode cur) {
+        while(cur != null) {
+            stack.push(cur);
+            cur = cur.left;
         }
     }
-    
+
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
         return !stack.isEmpty();
@@ -31,11 +30,12 @@ public class BSTIterator {
 
     /** @return the next smallest number */
     public int next() {
-        // if (!hasNext()) throw new NoSuchElementException("All nodes have been visited");
         
-        TreeNode res = stack.pop();
-        pushLeftChildren(res.right);
-        return res.val;
+        TreeNode cur = stack.pop();
+        if(cur.right != null) {
+            pushLeftChildrent(cur.right);
+        }
+        return cur.val;
     }
 }
 
