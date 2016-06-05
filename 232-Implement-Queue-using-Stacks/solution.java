@@ -9,12 +9,7 @@ class MyQueue {
 
     // Removes the element from in front of queue.
     public void pop() {
-        if(outbox.isEmpty()){
-            while(!inbox.isEmpty()) {
-                int cur = inbox.pop();
-                outbox.push(cur);
-            }
-        }
+        peek();
         outbox.pop();
     }
 
