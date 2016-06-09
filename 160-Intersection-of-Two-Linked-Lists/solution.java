@@ -16,9 +16,8 @@ public class Solution {
         int lenA = getLen(headA);
         int lenB = getLen(headB);
         
-        int dislen = lenA > lenB ? lenA - lenB : lenB - lenA;
+        int dislen = Math.abs(lenA - lenB);
         
-
         for (int i = 0; i < dislen; i++) {
             if (lenA > lenB) {
                 pa = pa.next;
@@ -32,7 +31,6 @@ public class Solution {
             pa = pa.next;
             pb = pb.next;
         }
-        
         return pa;
     }
     
