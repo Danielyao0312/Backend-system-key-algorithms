@@ -2,8 +2,6 @@ public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
     	List<Integer> res = new ArrayList<>();
     	Stack<TreeNode>	stack = new Stack<>();
-        
-        if(root == null)    return res;
 
         TreeNode cur = root;
         
