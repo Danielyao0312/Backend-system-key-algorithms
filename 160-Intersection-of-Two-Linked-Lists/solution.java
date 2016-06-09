@@ -19,14 +19,15 @@ public class Solution {
         int dislen = lenA > lenB ? lenA - lenB : lenB - lenA;
         
 
-        for(int i = 0; i < dislen; i++) {
-            if(lenA > lenB)
+        for (int i = 0; i < dislen; i++) {
+            if (lenA > lenB) {
                 pa = pa.next;
-            else
+            } else {
                 pb = pb.next;
+            }
         }
         
-        while(pa != null && pb != null) {
+        while (pa != null && pb != null) {
             if(pa.val == pb.val)    break;
             pa = pa.next;
             pb = pb.next;
@@ -37,7 +38,7 @@ public class Solution {
     
     private int getLen(ListNode head) {
         int len = 0;
-        while(head != null) {
+        while (head != null) {
             head = head.next;
             len ++;
         }
