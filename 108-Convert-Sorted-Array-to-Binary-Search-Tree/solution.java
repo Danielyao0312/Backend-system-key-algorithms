@@ -9,7 +9,7 @@ root : 找到 array 中点，以它的 val 直接 new 一个新的树节点
 右半边 array: 递归的以右半部分 array 建树，返回一个根叫做 right
 
 最后拼接起来, root.left = left, root.right = right
-整棵树就构建完成, 当然这里还需要考虑递归的 base case 就是 root == null 时 return null
+整棵树就构建完成, 当然这里还需要考虑递归的 base case 就是 start > end 时 return null
 
 可视化过程: 
 
