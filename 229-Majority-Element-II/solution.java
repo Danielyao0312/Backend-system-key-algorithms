@@ -13,7 +13,6 @@ public class Solution {
 			}
 		}
         
-        
 		for (int key : map.keySet()) {
 			if (map.get(key) > len / 3) {
 				list.add(key);
