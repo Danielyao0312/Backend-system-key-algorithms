@@ -11,12 +11,10 @@ public class Solution {
 				map.put(i, map.get(i) + 1);
 			}
 		}
-
-		int max = 0;
-		int res = 0;
+    
+        int res = 0;
 		for (int key : map.keySet()) {
-			if(map.get(key) > max) {
-				max = map.get(key);
+			if (map.get(key) > len / 2) {
 				res = key;
 			}
 		}
