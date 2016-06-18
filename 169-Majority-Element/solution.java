@@ -31,12 +31,14 @@ public class Solution {
 // 				map.put(i, map.get(i) + 1);
 // 			}
 // 		}
-
+//      
+        // int res = 0;
 // 		for (int key : map.keySet()) {
 // 			if (map.get(key) > len / 2) {
-// 				return key;
+// 				res = key;
 // 			}
 // 		}
+        // return res
 
 //     }
 
