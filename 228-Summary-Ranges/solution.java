@@ -15,11 +15,6 @@ public class Solution {
 		if (nums == null && nums.length == 0)	
 		    return res;
 
-		if (nums.length == 1) {
-		    res.add(nums[0] + "");
-		    return res;
-		}
-
 		for (int i = 0; i < nums.length; i++) {
 			int low = nums[i];
 
