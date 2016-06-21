@@ -80,7 +80,7 @@ public class Solution {
     
     private TreeNode buildTree(int n) {
         if(n == 0)      return null;
-        TreeNode root = new TreeNode(100);
+        TreeNode root = new TreeNode(-999);
         root.left = buildTree(n / 2);
         root.val = cur.val;
         cur = cur.next;  // !!! key point
