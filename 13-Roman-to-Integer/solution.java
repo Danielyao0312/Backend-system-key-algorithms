@@ -7,25 +7,23 @@ Input is guaranteed to be within the range from 1 to 3999.
 public class Solution {
 	// XIV: if find a char that is great than the char before, distract the smaller one twice. eg. XIV;
 	//general : add them together
-	// DIX
 
 	public int romanToInt(String s) {
 		if (s == null || s.length() == 0)	return 0;
 
 		int res = 0;
+		res += romanCharToInt(s.charAt(0));
 
-		for (int i = 0; i < s.length() - 1; i++) {
+		for (int i = 1; i < s.length(); i++) {
 			int curNum = romanCharToInt(s.charAt(i));
-			int postNum = romanCharToInt(s.charAt(i + 1));
+			int preNum = romanCharToInt(s.charAt(i - 1));
 
-			if (curNum < postNum) {
-				res -= curNum;
+			if (curNum > preNum) {
+				res += curNum - 2 * preNum;
 			} else {
 				res += curNum;
 			}
 		}
-
-		res += romanCharToInt(s.charAt(s.length() - 1));
 		return res;
 	}
 
