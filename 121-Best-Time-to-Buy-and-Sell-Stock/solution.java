@@ -8,7 +8,7 @@ public class Solution {
         
         for(int i = 1; i < prices.length; i ++) {
             int cur = prices[i];
-            if(cur < sofarMin)      sofarMin = cur;
+            sofarMin = Math.min(sofarMin, cur);
             maxProfit = Math.max(maxProfit, cur - sofarMin);
         }
         
