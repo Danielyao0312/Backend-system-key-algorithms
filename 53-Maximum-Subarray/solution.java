@@ -10,9 +10,9 @@ public class Solution {
         
         int sum = 0, minSum = 0, max = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-            max = Math.max(max, sum - minSum);
-            minSum = Math.min(minSum, sum);
+            sum += nums[i]; // 前 i 项和
+            max = Math.max(max, sum - minSum); // max is globally the max, compare it with the sum - minSum
+            minSum = Math.min(minSum, sum); // sofar minSum
         }
         return max;
     }   
