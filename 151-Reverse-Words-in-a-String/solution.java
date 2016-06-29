@@ -7,7 +7,7 @@ public class Solution {
 		
 		for (int i = list.length - 1; i >= 0; i--) {
 			String element = list[i];			
-			sb.append(element.trim());
+			sb.append(element);
 			if (i != 0) {
 			    sb.append(" ");
 			}
