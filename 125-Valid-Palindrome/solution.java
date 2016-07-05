@@ -34,37 +34,27 @@ public class Solution {
     
     // solution 2
     public boolean isPalindrome(String s) {
-        s = s.toLowerCase();
-        if (s.isEmpty()) return true;
-        
-        int low = 0;
-        int high = s.length() - 1;
-        int len = s.length();
-       
-        while(low < high){
-            while (!isAlphaOrDigit(s.charAt(low)) && low < high){
-                low ++;
-            }
-            while (!isAlphaOrDigit(s.charAt(high)) && low < high ){
-                high --;
-            }
-            if(s.charAt(low) != s.charAt(high)){
-                 return false;
-            }
-            low++;
-            high--;
+        if (s.length() == 0 || s == null) {
+            return true;
         }
         
+        s = s.toLowerCase();
+        int i = 0, j = s.length() - 1;
+        while (i < j) {
+            while (i < j && !Character.isLetterOrDigit(s.charAt(i))) {
+                i++;
+            }
+            while (i < j && !Character.isLetterOrDigit(s.charAt(j))) { 
+                j--;
+            }
+            if (s.charAt(i) != s.charAt(j)) {
+                return false;
+            }
+            i++; 
+            j--;
+        }
         return true;
         
-    }
-    
-    
-    public boolean isAlphaOrDigit(char c){
-        if( c >='a' && c <= 'z') return true;
-        if( c >='A' && c <= 'Z') return true;
-        if( c >='0' && c <= '9') return true;
-        return false;
     }
     
     
