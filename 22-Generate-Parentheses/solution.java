@@ -12,15 +12,20 @@ public class Solution {
                 right ++;
             }
             res.add(sb.toString());
-        }
-        else if (left == right) {
-            addUp(n, left + 1, right, sb.append('('), res);
-        }
+        } 
+        else if (left == right && left < n) {
+            sb.append('(');
+            addUp(n, left + 1, right, sb, res);
+        } 
         else { // add left or right
             int len = sb.length();
-            addUp(n, left + 1, right, sb.append('('), res);
+            sb.append('(');
+            addUp(n, left + 1, right, sb, res);
             sb.delete(len, sb.length());
-            addUp(n, left, right + 1, sb.append(')'), res);
+
+            sb.append(')');
+            addUp(n, left, right + 1, sb, res);
+
         }
     }
 }
