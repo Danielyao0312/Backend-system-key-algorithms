@@ -1,26 +1,26 @@
 public class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String> list = new ArrayList<>();
-        addUp(n, 0, 0, new StringBuilder(), list);
-        return list;
+        List<String> res = new ArrayList<>();
+        addUp(n, 0, 0, new StringBuilder(), res);
+        return res;
     }
-    
-    private void addUp(int n, int left, int right, StringBuilder str, List<String> list) {
+
+    private void addUp(int n, int left, int right, StringBuilder sb, List<String> res) {
         if (left == n) {
             while (right < n) {
-                str.append(')');
-                right++;
+                sb.append(')');
+                right ++;
             }
-            list.add(str.toString());
-        } else if (left == right) { // the parenthese in str are pairs, only add '('
-            addUp(n, left + 1, right, str.append('('), list);
-        } else { // the parenthese in str are not pairs, we can either add '(' or ')'
-            // try to add '('
-            int len = str.length();
-            addUp(n, left + 1, right, str.append('('), list);
-            // try to add ')'
-            str.delete(len, str.length()); // remove the parenthese generated in the previous line
-            addUp(n, left, right + 1, str.append(')'), list);
+            res.add(sb.toString());
+        }
+        else if (left == right) {
+            addUp(n, left + 1, right, sb.append('('), res);
+        }
+        else { // add left or right
+            int len = sb.length();
+            addUp(n, left + 1, right, sb.append('('), res);
+            sb.delete(len, sb.length());
+            addUp(n, left, right + 1, sb.append(')'), res);
         }
     }
 }
