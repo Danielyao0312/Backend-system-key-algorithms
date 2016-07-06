@@ -1,3 +1,14 @@
+/*
+Backtracking
+
+suppose the number of left brackets = left, num of right brackets = right;
+three cases:
+1. if left = n  => only add right bracket until right == n;
+2. if left = right < n => only add left bracket
+3. otherwise: add left bracket or right bracket;
+
+ */
+
 public class Solution {
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
