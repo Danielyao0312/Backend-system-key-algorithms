@@ -14,13 +14,12 @@ public class Solution {
 
 //     	//function:
 //     	for (int i = 1; i < n + 1; i++) {
-//     		int min = Integer.MAX_VALUE;
+//     		f[i] = Integer.MAX_VALUE;
 //     		for (int j = 0; j < i; j++) {
 //     			if (isPalindrome(sarray, j+1, i)) {
-//     				min = Math.min(min, f[j]);
+//     				f[i] = Math.min(f[i], f[j] + 1);
 //     			}
 //     		}
-//     		f[i] = min + 1;
 //     	}
 //     	//answer:
 //     	return f[n];
@@ -44,18 +43,60 @@ public class Solution {
 //     }
     
     
-    public int minCut(String s) {
-        int n = s.length();
-        boolean[][] tab = new boolean[n][n];
-        int[] min = new int[n];
-        for (int i = n - 1; i >= 0; i--) {
-            min[i] = n - i - 1;
-            for (int j = i; j < n; j++) {
-                tab[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 2 || tab[i + 1][j - 1]);
-                if (tab[i][j]) min[i] = Math.min(min[i], j + 1 < n ? (1 + min[j + 1]) : 0);
+// 九章 solution:  O(n2) 先计算并存储了 isPalindrome 的结果，每次使用的时候直接调用，isPalindrome[i][j] 从 O(n) 变为了 O(1)
+    private boolean isPalindrome(String s, int start, int end) {
+        for (int i = start, j = end; i < j; i++, j--) {
+            if (s.charAt(i) != s.charAt(j)) {
+                return false;
             }
         }
-        return min[0];
+        return true;
+    }
+
+    private boolean[][] getIsPalindrome(String s) {
+        boolean[][] isPalindrome = new boolean[s.length()][s.length()];
+
+        for (int i = 0; i < s.length(); i++) {
+            isPalindrome[i][i] = true;
+        }
+        for (int i = 0; i < s.length() - 1; i++) {
+            isPalindrome[i][i + 1] = (s.charAt(i) == s.charAt(i + 1));
+        }
+
+        for (int length = 2; length < s.length(); length++) {
+            for (int start = 0; start + length < s.length(); start++) {
+                isPalindrome[start][start + length]
+                    = isPalindrome[start + 1][start + length - 1] && s.charAt(start) == s.charAt(start + length);
+            }
+        }
+
+        return isPalindrome;
+    }
+
+    public int minCut(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+
+        // preparation
+        boolean[][] isPalindrome = getIsPalindrome(s);
+        
+        // initialize
+        int[] f = new int[s.length() + 1];
+        for (int i = 0; i <= s.length(); i++) {
+            f[i] = i - 1;
+        }
+        
+        // main
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (isPalindrome[j][i - 1]) {
+                    f[i] = Math.min(f[i], f[j] + 1);
+                }
+            }
+        }
+
+        return f[s.length()];
     }
 
 }
