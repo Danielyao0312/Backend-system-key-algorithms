@@ -7,8 +7,7 @@ public class Solution {
      * 
      */
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        if (obstacleGrid == null || obstacleGrid.length == 0 || 
-            obstacleGrid[0].length == 0) {
+        if (obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0].length == 0) {
             return 0;
         }
         
