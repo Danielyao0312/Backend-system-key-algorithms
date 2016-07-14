@@ -16,9 +16,10 @@ public class Solution {
         TreeNode bb = invertTree(root.right);
         
         // conquer:
-        TreeNode temp = root.left;
-        root.left = root.right;
+        TreeNode temp = root.left; // left == 2, temp = 2
+        root.left = root.right; // 
         root.right = temp;
+        
         
         return root;
     }
