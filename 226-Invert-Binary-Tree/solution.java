@@ -12,17 +12,11 @@ public class Solution {
         if(root == null) return root;
         
         // divide:
-        TreeNode left = invertTree(root.left);
-        TreeNode right = invertTree(root.right);
+        TreeNode leftInverted = invertTree(root.left);
+        TreeNode rightInverted = invertTree(root.right);
         
-        root.left = right;
-        root.right = left;
-        
-        // conquer:
-        // TreeNode temp = root.left; // left == 2, temp = 2
-        // root.left = root.right; // 
-        // root.right = temp;
-        
+        root.left = rightInverted;
+        root.right = leftInverted;
         
         return root;
     }
