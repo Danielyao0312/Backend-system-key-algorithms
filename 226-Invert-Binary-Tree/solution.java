@@ -12,13 +12,16 @@ public class Solution {
         if(root == null) return root;
         
         // divide:
-        TreeNode aa = invertTree(root.left);
-        TreeNode bb = invertTree(root.right);
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+        
+        root.left = right;
+        root.right = left;
         
         // conquer:
-        TreeNode temp = root.left; // left == 2, temp = 2
-        root.left = root.right; // 
-        root.right = temp;
+        // TreeNode temp = root.left; // left == 2, temp = 2
+        // root.left = root.right; // 
+        // root.right = temp;
         
         
         return root;
