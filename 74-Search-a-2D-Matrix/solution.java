@@ -1,7 +1,8 @@
 /*
 每行每列都是严格递增的，所以看成在一个一维数组里面搜索，第 n 个数的位置是[n / column][n % column]
 
-
+n * m matrix convert to an array => matrix[x][y] => a[x * m + y]
+an array convert to n * m matrix => a[x] =>matrix[x / m][x % m];
 */
 
 public class Solution {
