@@ -1,3 +1,10 @@
+/*
+1. find mid of the list
+2. reverse second part
+3. merge two parts
+*/
+
+
 public class Solution {
     private ListNode reverse(ListNode head) {
         ListNode newHead = null;
