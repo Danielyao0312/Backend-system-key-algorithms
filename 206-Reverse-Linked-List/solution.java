@@ -9,43 +9,42 @@
 public class Solution {
     
 //  while loop version;    
-    // public ListNode reverseList(ListNode head) {
-    //     if(head == null) return null;
-    
-    //     ListNode start = head;
-    //     ListNode curr = head.next;
-    //     ListNode after = null;
+    public ListNode reverseList(ListNode head) {
+        if(head == null) {
+            return head;
+        }
+        ListNode pre = null;
+        ListNode cur = head;
+        ListNode post = head.next;
         
-    //     start.next = null;//把第一个点的 next 断开
-    //     while(curr != null){
-    //         after = curr.next;
-    //         curr.next = start;
-    //         start = curr;
-    //         curr = after;
-            
-    //     }
-    //     return start;
-    // }
+        while (cur != null) {
+            post = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = post;
+        }
+        return pre;
+    }
 
 // recursion version;    
-    public ListNode reverseList(ListNode head) {
+    // public ListNode reverseList(ListNode head) {
         
-        if(head == null){
-            return head;
-        }
-        //base case
-        if(head.next == null){
-            return head;
-        }
-        //recursively solve the subproblem
-        ListNode newHead = reverseList(head.next);
+    //     if(head == null){
+    //         return head;
+    //     }
+    //     //base case
+    //     if(head.next == null){
+    //         return head;
+    //     }
+    //     //recursively solve the subproblem
+    //     ListNode newHead = reverseList(head.next);
         
-        //combine sub to original problem
-        head.next.next = head;
-        head.next = null;
+    //     //combine sub to original problem
+    //     head.next.next = head;
+    //     head.next = null;
         
-        return newHead;
-    }
+    //     return newHead;
+    // }
     
         
     
