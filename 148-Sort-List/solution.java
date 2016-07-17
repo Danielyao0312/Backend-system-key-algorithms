@@ -26,25 +26,24 @@ public class Solution {
         return slow;
     } 
     
-    private ListNode merge(ListNode head1, ListNode head2) {
+    private ListNode merge(ListNode h1, ListNode h2) {
         ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        while (head1 != null && head2 != null) {
-            if (head1.val < head2.val) {
-                tail.next = head1;
-                head1 = head1.next;
+        ListNode c = dummy;
+        while (h1 != null && h2 != null) {
+            if (h1.val < h2.val) {
+                c.next = h1;
+                h1 = h1.next;
             } else {
-                tail.next = head2;
-                head2 = head2.next;
+                c.next = h2;
+                h2 = h2.next;
             }
-            tail = tail.next;
+            c = c.next;
         }
-        if (head1 != null) {
-            tail.next = head1;
+        if (h1 != null) {
+            c.next = h1;
         } else {
-            tail.next = head2;
+            c.next = h2;
         }
-        
         return dummy.next;
     }
      
