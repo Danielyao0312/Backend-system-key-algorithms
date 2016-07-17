@@ -13,17 +13,15 @@ public class Solution {
         if(head == null) {
             return head;
         }
-        ListNode pre = null;
-        ListNode cur = head;
-        ListNode post = head.next;
         
-        while (cur != null) {
-            post = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = post;
+        ListNode prev = null;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = prev;
+            prev = head;
+            head = temp;
         }
-        return pre;
+        return prev;
     }
 
 // recursion version;    
