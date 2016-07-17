@@ -18,7 +18,7 @@ public class Solution {
         use merge sort;
      */
     private ListNode findMid(ListNode head) {
-        ListNode slow = head, fast = head.next;
+        ListNode slow = head, fast = head.next; // key point!!!  fast must initial = head.next, otherwise the program will stack overflow.
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
