@@ -13,6 +13,10 @@ using divide and conquer:
 2. merge left part to list a
 3. merge right part to list b
 4. merge a and b.
+
+time complexity: n = total number of nodes in all lists.
+ O(nlogk) 每层需要 O(n) 时间去 merge, 一共有 logk 层
+ 
 */ 
 
 public class Solution {
