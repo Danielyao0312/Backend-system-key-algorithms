@@ -7,6 +7,8 @@ public class Solution {
     solution:
     1. cut on the left part : A > nums[start], find the right(start = mid)
     2. else cut on the right,  find the left(end = mid)
+    
+    一遍 bug free!
     */
     public int findMin(int[] nums) {
         if (nums.length == 1) {
