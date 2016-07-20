@@ -1,31 +1,35 @@
 public class Solution {
-    //1.intput: an array, output: List<List<Integer>>
-    //2.crack the question: search for ALL POSSIBLE results -> dfs solution -> backtracking
-    //  dfs question -> using a helper function, recursive solve the problem
-    //3.corner cases: nums == null
     
+    /*
+    1. 把以1，2，3分别开头的结果加入 res中
+    2. 出口，当结果数组长度为总长时
+    */
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> subres = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         
-        if(nums.length == 0 || nums == null)    return res;
+        if (nums == null || nums.length == 0) {
+            return res;
+        }
         
-        helper(res, subres, nums);
+        helper(res, list, nums);
         return res;
     }
     
-    private void helper(List<List<Integer>> res, List<Integer> subres, int[] nums) {
-        if(subres.size() == nums.length){
-            res.add(new ArrayList<Integer>(subres));
+    private void helper(List<List<Integer>> res, List<Integer> list, int[] nums) {
+        // 出口:
+        if (list.size() == nums.length) {
+            res.add(new ArrayList<Integer>(list));
             return;
         }
-        for(int i = 0; i < nums.length; i++) {
-            if(subres.contains(nums[i]))    continue;
-            
-            subres.add(nums[i]);
-            helper(res, subres, nums);
-            subres.remove(subres.size() - 1);
-        }
         
+        for (int i = 0; i < nums.length; i++) {
+            if (list.contains(nums[i])) {
+                continue;
+            }
+            list.add(nums[i]);
+            helper(res, list, nums);
+            list.remove(list.size() - 1);
+        }
     }
 }
