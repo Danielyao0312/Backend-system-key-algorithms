@@ -17,7 +17,7 @@ public class Solution {
         if (nums == null || nums.length == 0) {
             return res;
         }
-        int[] visited = new int[nums.length];
+        boolean[] visited = new boolean[nums.length];
         
         // 把[] 开头的所有排列，加入到 res 中
         helper(res, list, nums, visited);
@@ -25,7 +25,7 @@ public class Solution {
     }
     
     //定义：把 list 开头的所有排列，加入到 res 中
-    private void helper(List<List<Integer>> res, List<Integer> list, int[] nums, int[] visited) {
+    private void helper(List<List<Integer>> res, List<Integer> list, int[] nums, boolean[] visited) {
         // 出口:
         if (list.size() == nums.length) {
             res.add(new ArrayList<Integer>(list));
@@ -34,17 +34,15 @@ public class Solution {
         
         // 把[1]开头 [2]开头  [3]开头的结果分别加入到 res 中
         for (int i = 0; i < nums.length; i++) {
-            if (visited[i] == 1) {
+            if (visited[i]) {
                 continue;
             }
-            // if (list.contains(nums[i])) {
-            //     continue;
-            // }
-            visited[i] = 1;
+            
+            visited[i] = true;
             list.add(nums[i]); // 把1加入到了[], 变成了[1]
-            helper(res, list, nums, visited); // 把【1】 开头的，加入 res 中
+            helper(res, list, nums, visited); // 把【1】 开头的全部结果，加入 res 中
             list.remove(list.size() - 1);
-            visited[i] = 0;
+            visited[i] = false;
         }
     }
 }
