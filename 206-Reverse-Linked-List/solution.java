@@ -7,43 +7,14 @@
  * }
  */
 public class Solution {
-    
-//  while loop version;    
     public ListNode reverseList(ListNode head) {
-        if(head == null) {
-            return head;
-        }
-        
-        ListNode prev = null;
+        ListNode pre = null;
         while (head != null) {
             ListNode temp = head.next;
-            head.next = prev;
-            prev = head;
+            head.next = pre;
+            pre = head;
             head = temp;
         }
-        return prev;
+        return pre;
     }
-
-// recursion version;    
-    // public ListNode reverseList(ListNode head) {
-        
-    //     if(head == null){
-    //         return head;
-    //     }
-    //     //base case
-    //     if(head.next == null){
-    //         return head;
-    //     }
-    //     //recursively solve the subproblem
-    //     ListNode newHead = reverseList(head.next);
-        
-    //     //combine sub to original problem
-    //     head.next.next = head;
-    //     head.next = null;
-        
-    //     return newHead;
-    // }
-    
-        
-    
 }
