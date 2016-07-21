@@ -30,15 +30,15 @@ add to res
 public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
     	List<List<Integer>> res = new ArrayList<>();
-    	if (nums == null || nums.length == 0) {
+    	if (nums == null || nums.length < 3) {
     		return res;
     	}
 
     	Arrays.sort(nums);
-    	for (int i = 0; i < nums.length; i++) {
+    	for (int i = 0; i < nums.length - 2; i++) {
     		int cur = nums[i];
     		if (i > 0 && nums[i] == nums[i - 1]){
-    			continue;
+    			continue; //  to skip duplicate numbers; e.g [0,0,0,0]
     		}
     		int lo = i + 1;
     		int hi = nums.length - 1;
@@ -53,10 +53,10 @@ public class Solution {
     				lo ++;
     				hi --;
     				while (lo < hi && nums[lo] == nums[lo - 1]) {
-    					lo ++;
+    					lo ++; // to skip duplicates
     				}
     				while (lo < hi && nums[hi] == nums[hi + 1]) {
-    					hi --;
+    					hi --; // to skip duplicates
     				}
     			} else if (sum < 0) {
     				lo ++;
