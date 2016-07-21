@@ -1,17 +1,22 @@
 public class Solution {
+    /*
+    1. 计算当前点之前的最小值 min
+    2. 当前天的 maxProfit = price - min 作为候选
+    3. 用这个 maxprofit 和全局 max 比一下，更新全局 max (最后如果 max < 0 就 return 0)
+    */
     public int maxProfit(int[] prices) {
-        //corner cases:
-        if(prices.length == 0 || prices == null)    return 0;
-        
-        int maxProfit = 0;
-        int sofarMin = prices[0];
-        
-        for(int i = 1; i < prices.length; i ++) {
-            int cur = prices[i];
-            sofarMin = Math.min(sofarMin, cur);
-            maxProfit = Math.max(maxProfit, cur - sofarMin);
+        if (prices == null || prices.length == 0) {
+            return 0;
         }
         
-        return maxProfit;
+        int curMin = prices[0];
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            int curProfit = prices[i] - curMin;
+            curMin = Math.min(prices[i], curMin);
+            maxProfit = Math.max(maxProfit, curProfit);
+        }
+        
+        return maxProfit < 0 ? 0 : maxProfit;
     }
 }
