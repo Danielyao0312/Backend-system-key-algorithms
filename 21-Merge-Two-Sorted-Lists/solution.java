@@ -2,35 +2,32 @@
  * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
- *     public ListNode next;
- *     public ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
  * }
  */
 public class Solution {
-     public ListNode mergeTwoLists(ListNode h1, ListNode h2) {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode p = dummy;
-        
-        while (h1 != null && h2 != null) {
-            if (h1.val < h2.val) {
-                p.next = h1;
-                h1 = h1.next;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                p.next = l1;
                 p = p.next;
+                l1 = l1.next;
             } else {
-                p.next = h2;
-                h2 = h2.next;
+                p.next = l2;
                 p = p.next;
+                l2 = l2.next;
             }
         }
-        if (h1 != null) {
-            p.next = h1;
+        if (l1 != null) {
+            p.next = l1;
         } else {
-            p.next = h2;
+            p.next = l2;
         }
         
         return dummy.next;
+        
     }
 }
