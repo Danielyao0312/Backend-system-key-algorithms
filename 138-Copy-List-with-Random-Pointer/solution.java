@@ -9,8 +9,9 @@
 /*
 1. copy nodes (create a hashmap<oldNode, newNode>)
 2. copy pointers (next, random)
-
 3. return map.get(head)
+
+一次 bug free!!!!
 */
 
 public class Solution {
