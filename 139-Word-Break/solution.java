@@ -25,7 +25,8 @@ public class Solution {
         
         //func:
         for (int i = 1; i < n + 1; i++) {
-            for (int j = i >= maxLen ? i - maxLen : 0; j < i; j++) {
+            // for (int j = i >= maxLen ? i - maxLen : 0; j < i; j++) {
+            for (int j = 0; j < i; j++) {
                 if (dp[j] && wordDict.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
