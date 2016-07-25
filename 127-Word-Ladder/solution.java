@@ -25,14 +25,14 @@ public class Solution {
 
         int depth = 1; //出错点！初始 depth 为1， 因为已经有一个点在 q 中(为第一层)
         while (!q.isEmpty()) {
-            depth ++; // 进入下一层
+            depth ++;  // 进入下一层
             int size = q.size();
             for (int i = 0; i < size; i++) {
                 String cur = q.poll();
                 for (String nextWord : getNextWords(cur, wordList)) { // for all nodes neighbor to cur
                     if (!set.contains(nextWord)) {
-                        if (nextWord.equals(endWord)) {
-                            return depth;  // 如果 bfs 找到了，那就返回长度
+                        if (nextWord.equals(endWord)) {   // 如果 bfs 找到了，那就返回长度
+                            return depth;  
                         }
                         set.add(nextWord);
                         q.add(nextWord);
@@ -40,7 +40,7 @@ public class Solution {
                 }
             }
         }
-        return 0;  // 否则的话没找到，返回0
+        return 0;  //没找到,返回0
     }
 
     /*
@@ -50,6 +50,9 @@ public class Solution {
         ArrayList<String> res = new ArrayList<>();
         for (int i = 0; i < str.length(); i++) {
             for (char c = 'a'; c <= 'z'; c++) {
+                if (c == str.charAt(i)) {
+                    continue;
+                }
                 String replacedStr = replace(str, i, c);
                 if (wordList.contains(replacedStr)) {
                     res.add(replacedStr);
