@@ -53,18 +53,15 @@ public class Solution {
                 if (c == str.charAt(i)) {
                     continue;
                 }
-                String replacedStr = replace(str, i, c);
+                char[] arr = str.toCharArray();
+                arr[i] = c;
+                String replacedStr = new String(arr);
+
                 if (wordList.contains(replacedStr)) {
                     res.add(replacedStr);
                 }
             }
         }
         return res;
-    }
-
-    private String replace(String str, int i, char c) {
-        char[] arr = str.toCharArray();
-        arr[i] = c;
-        return new String(arr);
     }
 }
