@@ -1,33 +1,67 @@
+/*
+find shortest length of transformation => find the shortest path in word graph => use BFS
+
+corner cases:
+1. endWord not exist
+2. beginword == endword
+
+hot => dog
+*/
+
 public class Solution {
+
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
-        if(beginWord == null || endWord == null || wordList == null || wordList.size() == 0) {
+        if (!wordList.contains(endWord)) {
             return 0;
         }
-        Queue<String> wordQueue = new LinkedList<String>();
-        Queue<Integer> numQueue = new LinkedList<Integer>();
-        
-        wordQueue.offer(beginWord);
-        numQueue.offer(1);
-        
-        while(!wordQueue.isEmpty()) {
-            String word = wordQueue.poll();
-            Integer num = numQueue.poll();
-            for(int i=0; i<word.length(); i++) {
-                char[] arr = word.toCharArray();
-                for(char c='a'; c<='z'; c++) {
-                    arr[i] = c;
-                    String newStr = new String(arr);
-                    if(newStr.equals(word)) continue;
-                    if(newStr.equals(endWord)) return num + 1;
-                    if(wordList.contains(newStr)) {
-                        wordQueue.offer(newStr);
-                        numQueue.offer(num + 1);
-                        wordList.remove(newStr);
+        if (beginWord.equals(endWord)) {
+            return 1;
+        }
+
+        Queue<String> q = new LinkedList<>();
+        HashSet<String> set = new HashSet<>();
+        q.add(beginWord);
+        set.add(beginWord);
+
+        int depth = 1; //出错点！初始 depth 为1， 因为已经有一个点在 q 中(为第一层)
+        while (!q.isEmpty()) {
+            depth ++; // 进入下一层
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                String cur = q.poll();
+                for (String nextWord : getNextWords(cur, wordList)) { // for all nodes neighbor to cur
+                    if (!set.contains(nextWord)) {
+                        if (nextWord.equals(endWord)) {
+                            return depth;  // 如果 bfs 找到了，那就返回长度
+                        }
+                        set.add(nextWord);
+                        q.add(nextWord);
                     }
                 }
             }
         }
-        
-        return 0;
+        return 0;  // 否则的话没找到，返回0
+    }
+
+    /*
+    *  abcd => 每一位有26种变化,一共有4位, 总共有26*4种变化, 看这些变换, 哪些在wordlist 即可
+    */
+    private ArrayList<String> getNextWords(String str, Set<String> wordList) {
+        ArrayList<String> res = new ArrayList<>();
+        for (int i = 0; i < str.length(); i++) {
+            for (char c = 'a'; c <= 'z'; c++) {
+                String replacedStr = replace(str, i, c);
+                if (wordList.contains(replacedStr)) {
+                    res.add(replacedStr);
+                }
+            }
+        }
+        return res;
+    }
+
+    private String replace(String str, int i, char c) {
+        char[] arr = str.toCharArray();
+        arr[i] = c;
+        return new String(arr);
     }
 }
