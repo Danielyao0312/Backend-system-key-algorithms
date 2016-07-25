@@ -1,5 +1,3 @@
-
-
 /*
 find shortest length of transformation => find the shortest path in word graph => use BFS
 
@@ -11,7 +9,6 @@ hot => dog
 */
 
 public class Solution {
-
 
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         if (!wordList.contains(endWord)) {
@@ -35,7 +32,7 @@ public class Solution {
                 for (String nextWord : getNextWords(cur, wordList)) { // for all nodes neighbor to cur
                     if (!set.contains(nextWord)) {
                         if (nextWord.equals(endWord)) {   // 如果 bfs 找到了，那就返回长度
-                            return depth;
+                            return depth;  
                         }
                         set.add(nextWord);
                         q.add(nextWord);
@@ -53,6 +50,9 @@ public class Solution {
         ArrayList<String> res = new ArrayList<>();
         for (int i = 0; i < str.length(); i++) {
             for (char c = 'a'; c <= 'z'; c++) {
+                if (c == str.charAt(i)) {
+                    continue;
+                }
                 String replacedStr = replace(str, i, c);
                 if (wordList.contains(replacedStr)) {
                     res.add(replacedStr);
