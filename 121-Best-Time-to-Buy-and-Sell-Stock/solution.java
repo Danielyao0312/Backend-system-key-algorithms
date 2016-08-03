@@ -13,8 +13,7 @@ public class Solution {
         int maxProfit = 0;
         for (int i = 1; i < prices.length; i++) {
             curMin = Math.min(prices[i], curMin);
-            int curProfit = prices[i] - curMin;
-            maxProfit = Math.max(maxProfit, curProfit);
+            maxProfit = Math.max(maxProfit, prices[i] - curMin);
         }
         
         return maxProfit;
