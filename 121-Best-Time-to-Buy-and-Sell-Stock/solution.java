@@ -14,7 +14,7 @@ public class Solution {
             return 0;
         }
         
-        int max = Integer.MIN_VALUE;
+        int max = 0;
         int min = nums[0];
         for (int i = 0; i < nums.length; i++) {
             max = Math.max(max, nums[i] - min);
