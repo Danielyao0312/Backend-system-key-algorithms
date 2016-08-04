@@ -1,43 +1,31 @@
-public class Solution {
-    /*
-    
-    use hashmap to store different groups: 
-        key: cda -> acd  sorted str  // find in which group
-        value : [cda, cad...] 
-    
+/*
+1. group them the strings => 
+hashmap:
+key : sorted string : aet
+values: string itself : ate, eat, tea....
 
-    return: add all values in hashmap to a arraylist, then return it
-    
-    
-    1. new hashmap and a res
-    2. put into the hashmap O(n * maxLen)
-            1. when hashmap does not contain this str, add: key: sorted str, value: str itself
-            2. when hashmap contains str, add to the key(sorted str)
-    3. traverse hashmap, add all values to the res
-    */
+2. traverse the hashmap, put values into res
+
+*/
+
+public class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        HashMap<String, List<String>> map = new HashMap<>();
         List<List<String>> res = new ArrayList<>();
-        
-        if (strs == null || strs.length == 0) {
-            return res;
-        }
+        Map<String, List<String>> map = new HashMap<>();
         
         for (String str : strs) {
-            String sortedStr = sort(str);
-            if (!map.containsKey(sortedStr)) {
+            String sorted = sort(str);
+            if (!map.containsKey(sorted)) {
                 List<String> temp = new ArrayList<>();
                 temp.add(str);
-                map.put(sortedStr, temp);
+                map.put(sorted, temp);
             } else {
-                map.get(sortedStr).add(str);
+                map.get(sorted).add(str);
             }
         }
-        
-        for (List<String> value : map.values()) {
-            res.add(value);
+        for (List<String> list : map.values()) {
+            res.add(list);
         }
-        
         return res;
     }
     
@@ -47,5 +35,4 @@ public class Solution {
         Arrays.sort(arr);
         return new String(arr);
     }
-    
 }
