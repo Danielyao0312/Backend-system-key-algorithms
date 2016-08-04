@@ -14,7 +14,7 @@ public class Solution {
         Map<String, List<String>> map = new HashMap<>();
         
         for (String str : strs) {
-            String sorted = labelStr(str);
+            String sorted = sort(str);
             if (!map.containsKey(sorted)) {
                 map.put(sorted, new ArrayList<String>());
             } 
@@ -26,7 +26,7 @@ public class Solution {
         return res;
     }
     
-    // apple => a1e1l1p2 : O(n)    //实际运行速度很慢！
+    // apple => a1e1l1p2 : O(n)    //实际运行速度很慢！ 考虑该方法 optional
     private String labelStr(String str) {
         int[] count = new int[256];
         for (int i = 0; i < str.length(); i++) {
