@@ -18,11 +18,11 @@ public class Solution {
             return false;
         }
 
-        int[] count = new int[256];
+        int[] count = new int[26];
     
         for(int i = 0; i < s.length(); i++) {
-            count[s.charAt(i)]++;
-            count[t.charAt(i)]--;
+            count[s.charAt(i) - 'a']++;
+            count[t.charAt(i) - 'a']--;
         }
     
         for(int x : count) {
