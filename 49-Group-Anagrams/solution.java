@@ -26,7 +26,7 @@ public class Solution {
         return res;
     }
     
-    // apple => a1e1l1p2 : O(n)    
+    // apple => a1e1l1p2 : O(n)    //实际运行速度很慢！
     private String labelStr(String str) {
         int[] count = new int[256];
         for (int i = 0; i < str.length(); i++) {
@@ -44,7 +44,7 @@ public class Solution {
     }
     
     
-    //sort: apple => aelpp:  O(nlogn)
+    //sort: apple => aelpp:  O(nlogn)  // 数字不大的时候，实际运行速度快！
     private String sort(String str) {
         char[] arr = str.toCharArray();
         Arrays.sort(arr);
