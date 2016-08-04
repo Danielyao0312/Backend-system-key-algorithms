@@ -16,12 +16,9 @@ public class Solution {
         for (String str : strs) {
             String sorted = sort(str);
             if (!map.containsKey(sorted)) {
-                List<String> temp = new ArrayList<>();
-                temp.add(str);
-                map.put(sorted, temp);
-            } else {
-                map.get(sorted).add(str);
-            }
+                map.put(sorted, new ArrayList<String>());
+            } 
+            map.get(sorted).add(str);
         }
         for (List<String> list : map.values()) {
             res.add(list);
