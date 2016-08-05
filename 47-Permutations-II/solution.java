@@ -1,3 +1,17 @@
+/*
+Backtracking: Time ~ O(N!), Extra Space ~ O(N) 
+Must sort first (因为仅判断相邻是否 duplicates)!
+
+用一个 HashSet 记录访问过的元素 index，因为有duplicates，不能用 list.contains(num[i]) 判断是否该元素已经被加入排列。
+
+Backtracking is needed here (since DFS exceeds time limit!) 
+
+剪枝的条件: 发现相同元素，且前一个相同元素没有用过（如果用过则是一个新排列）。
+!vistied.contains(i - 1) && num[i - 1] == num[i]
+No need to check duplicate lists here, since the pruning already takes out the duplicates.
+
+*/
+
 public class Solution {
     
     private List<List<Integer>> res;
