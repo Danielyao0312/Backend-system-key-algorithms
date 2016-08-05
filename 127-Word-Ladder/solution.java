@@ -2,20 +2,15 @@ public class Solution {
     public int ladderLength(String start, String end, Set<String> dict) {
         Set<String> map = new HashSet<>(); // record visited words in dict so as not to modify dict
         Queue<String> word = new LinkedList<String>();
-        // Queue<Integer> depth = new LinkedList<Integer>();
-        int depth = 1;
         word.add(start);
-        // depth.add(1);
         
         // BFS
+        int depth = 1;
         while (!word.isEmpty()) {
-            depth ++;
+            depth ++; // go to next depth
             int size = word.size();
             for (int j = 0; j < size; j++) {
                 String currWord = word.poll();
-                
-                // int currDepth = depth.poll();
-                // return depth if a match is found
                 
                 // change each letter of currWord
                 for (int i = 0; i < currWord.length(); i++) {
@@ -28,7 +23,7 @@ public class Solution {
                         currWordArr[i] = c;
                         String newWord = new String(currWordArr); // for all nodes that neighbor to the currentWord
                         if (newWord.equals(end)) {
-                            return depth;
+                            return depth; // reach the end
                         }
                         if (dict.contains(newWord) && !map.contains(newWord)) {
                             word.add(newWord);
