@@ -48,6 +48,7 @@ public class Solution {
     */
     private ArrayList<String> getNextWords(String str, Set<String> wordList) {
         ArrayList<String> res = new ArrayList<>();
+        
         for (int i = 0; i < str.length(); i++) {
             for (char c = 'a'; c <= 'z'; c++) {
                 if (c == str.charAt(i)) {
