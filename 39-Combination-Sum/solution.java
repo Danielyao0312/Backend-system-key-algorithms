@@ -12,7 +12,7 @@ public class Solution {
     }
     
     private void dfs(List<List<Integer>> res, List<Integer> list, int[] nums, int target, int pos) {
-        if(target == 0) {
+        if (target == 0) {
             res.add(new ArrayList<Integer>(list));
             return;
         }else if(target < 0) { // key point!!!
