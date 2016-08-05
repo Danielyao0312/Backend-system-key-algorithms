@@ -9,13 +9,16 @@ The **same** repeated number may be chosen from **_C_** unlimited number of time
 **Note:**  
 
 *   All numbers (including target) will be positive integers.
-*   Elements in a combination (_a_<sub>1</sub>, _a_<sub>2</sub>, … , _a_<sub>k</sub>) must be in non-descending order. (ie, _a_<sub>1</sub> ≤ _a_<sub>2</sub> ≤ … ≤ _a_<sub>k</sub>).
 *   The solution set must not contain duplicate combinations.
 
-For example, given candidate set `2,3,6,7` and target `7`,  
+For example, given candidate set `[2, 3, 6, 7]` and target `7`,  
 A solution set is:  
-`[7]`  
-`[2, 2, 3]`  
+
+<pre>[
+  [7],
+  [2, 2, 3]
+]
+</pre>
 
 <div>
 
@@ -39,4 +42,4 @@ A solution set is:
 
 <div id="similar" class="btn btn-xs btn-warning">Show Similar Problems</div>
 
-<span class="hidebutton">[(M) Letter Combinations of a Phone Number](/problems/letter-combinations-of-a-phone-number/) [(M) Combination Sum II](/problems/combination-sum-ii/) [(M) Combinations](/problems/combinations/) [(M) Combination Sum III](/problems/combination-sum-iii/) [(M) Factor Combinations](/problems/factor-combinations/)</span></div>
+<span class="hidebutton">[(M) Letter Combinations of a Phone Number](/problems/letter-combinations-of-a-phone-number/) [(M) Combination Sum II](/problems/combination-sum-ii/) [(M) Combinations](/problems/combinations/) [(M) Combination Sum III](/problems/combination-sum-iii/) [(M) Factor Combinations](/problems/factor-combinations/) [(M) Combination Sum IV](/problems/combination-sum-iv/)</span></div>
