@@ -20,6 +20,10 @@ public class Solution {
         }
         
         for(int i = pos; i < nums.length; i++) {
+            if (i > pos && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            
             list.add(nums[i]);
             dfs(res, list, nums, target - nums[i], i);
             list.remove(list.size() - 1);
