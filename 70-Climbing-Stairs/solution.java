@@ -14,15 +14,16 @@ public class Solution {
             return 1;
         }
         
-        int[] f = new int[n + 1];
+        // int[] f = new int[n + 1];
+        int[] f = new int[3];
         f[0] = 1;
         f[1] = 1;
         
         for (int i = 2; i < n + 1; i++) {
-            f[i] = f[i - 1] + f[i - 2];
+            f[i % 3] = f[(i - 1) % 3] + f[(i - 2) % 3];
         }
         
-        return f[n];
+        return f[n % 3];
         
         //best solution
         // if (n <= 1) {
