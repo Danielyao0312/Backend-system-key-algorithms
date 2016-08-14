@@ -5,8 +5,8 @@ public class Solution {
      * 
      * state: f[i][j] 表示 s 的前 i 个配上 t 的前 j 个能有多少个？
      * function: 
-     * 1. f[i][j] = f[i - 1][j - 1] + f[i - 1][j] if A[i] == B[j]
-     * 2. f[i][j] = f[i - 1][j]  if A[i] != B[j]
+     * 1. f[i][j] = f[i - 1][j - 1] + f[i - 1][j]    if A[i] == B[j]
+     * 2. f[i][j] = f[i - 1][j]        if A[i] != B[j]
      * 
      * initial: f(i, 0) = 1, f(0, i) = 0
      * answer: f[m][n]
@@ -29,14 +29,16 @@ public class Solution {
         //     f[0][i] = 0;
         // }
 
-        
         for (int i = 1; i < m + 1; i++) {
             for (int j = 1; j < n + 1; j++) {
+                
                 if (S.charAt(i - 1) == T.charAt(j - 1)) {
                     f[i][j] = f[i - 1][j - 1] + f[i - 1][j];
-                } else { // s[i] != s[j]
+                } 
+                else {             // s[i] != s[j]
                     f[i][j] = f[i - 1][j];
                 }
+                
             }
         }
         
