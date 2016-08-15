@@ -19,13 +19,17 @@ public class Solution {
         int ans = Integer.MAX_VALUE;
         
         for (i = 0; i < nums.length; i++) {
+            
             while (j < nums.length && sum < s) {
                 sum += nums[j];
                 j ++;
             }
+            
             if (sum >= s) {
-                ans = Math.min(ans, j - i);
+                ans = Math.min(ans, j - i);  //易错点，跳出循环时，sum >= s， 此时 因为 
+                                    //  j ++最后执行，已经跑到了最后一位的下一位，所以不需要 j - i + 1!!!!
             }
+            
             sum -= nums[i];
         }
         
