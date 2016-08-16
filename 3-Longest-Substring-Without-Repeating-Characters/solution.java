@@ -3,6 +3,8 @@ brute force: find all substrings (n^2),
 
 pwwkesbwp :  6 kesbwp
 
+// 窗口类问题，两个前向指针挪动，map 用于 counting sort 中判断字符是否有出现过！ -1 表示未出现，其他表示出现
+ O(n)
 */
 
 public class Solution {
@@ -22,7 +24,7 @@ public class Solution {
                 j ++;
             }  
             
-            map[s.charAt(i)] = -1; // i 位在更新回未出现过
+            map[s.charAt(i)] = -1; // i 位对应的字符, 更新回未出现过
         }
         
         return ans;
