@@ -3,25 +3,26 @@ brute force: find all substrings (n^2),
 
 pwwkesbwp :  6 kesbwp
 
-
 */
 
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int[] map = new int[256]; // map from character's ASCII to its last occured index
+        int[] map = new int[256];
         Arrays.fill(map, -1);
         
-        int slow = 0;
-        int fast = 0;
+        int j = 0; // fast pointer
+        int i = 0; // slow pointer
         int ans = 0;
-        for (fast = 0; fast < s.length(); fast++) {
-            int ch = s.charAt(fast);
-            while (map[ch] != -1 && slow < fast) { // 当 ch 已经出现过，并且 slow < fast 
-                map[s.charAt(slow)] = -1; // slow 到 fast的之间的字符全部设置为 没出现过
-                slow ++;
-            }
-            map[ch] = 1;
-            ans = Math.max(ans, fast-slow + 1);
+        
+        for (i = 0; i < s.length(); i++) {
+            
+            while (j < s.length() && map[s.charAt(j)] == -1) {  // 无重复的时候，把 j 往前挪动,  -1表示未出现过
+                map[s.charAt(j)] = 0; // 把 j 位设置为重复，0表示出现过
+                ans = Math.max(ans, j - i + 1);
+                j ++;
+            }  
+            
+            map[s.charAt(i)] = -1; // i 位在更新回未出现过
         }
         
         return ans;
