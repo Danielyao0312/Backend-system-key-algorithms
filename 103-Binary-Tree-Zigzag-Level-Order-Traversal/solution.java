@@ -31,7 +31,7 @@ public class Solution {
                 if(cur.right != null)   q.add(cur.right);
             }
             
-            if(reverse) {
+            if(reverse == true) {
                 Collections.reverse(subres);
                 reverse = false;
             }else{
