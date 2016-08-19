@@ -4,7 +4,8 @@ dfs 暴力搜索4个方向，维护一个 visited 数组，去判断该元素是
 dfs 做 backtracking 时，注意递归的出口：
 1. 不在 board 边界范围内，返回 false
 2. 被访问过，返回 false
-
+3. match 上了,即遍历到 word 的最后一个元素时， return true
+4. match 不上， return false;
 
 */
 
