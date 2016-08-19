@@ -1,46 +1,45 @@
-//my solution:
-public class Solution{
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
-        
-        if (root == null) return res;
-    
-        pushAllLeft(root, stack);
-        while (!stack.isEmpty()) {
-            TreeNode cur = stack.pop();
-            res.add(cur.val);
-            pushAllLeft(cur.right, stack);
-        }
-        return res;
-    }
+/*
+tree inorder non-recursion
 
-    public void pushAllLeft(TreeNode node, Stack stack){
-        while (node != null) {
-            stack.add(node);
-            node = node.left;
-        }
-    }
+1. put all left to the stack
+2. pop the stack : => cur
+	if cur.right is not empty {
+		putalltoLeft(cur.right, stack)
+	}
+
+	if cur.right is empty
+*/
+
+
+public class Solution {
+	public List<Integer> inorderTraversal(TreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		Stack<TreeNode> stack = new Stack<>();
+
+		if (root == null) {
+			return res;
+		}
+
+		putAllToLeft(root, stack);
+
+		while (!stack.isEmpty()) {
+			TreeNode cur = stack.pop();
+			res.add(cur.val);
+
+			if (cur.right != null) {
+				putAllToLeft(cur.right, stack);
+			}
+		}
+
+		return res;
+	}
+
+	public void putAllToLeft(TreeNode root, Stack stack) {
+		TreeNode p = root;
+		while (p != null) {
+			stack.push(p);
+			p = p.left;
+		}
+	}
+
 }
-
-// other solution:
-// public class Solution {
-//     public List<Integer> inorderTraversal(TreeNode root) {
-//     	List<Integer> res = new ArrayList<>();
-//     	Stack<TreeNode>	stack = new Stack<>();
-
-//         TreeNode cur = root;
-        
-//         while(cur != null || !stack.isEmpty()) {
-//             while(cur != null) {
-//                 stack.push(cur);
-//                 cur = cur.left;
-//             }
-//             cur = stack.pop();
-//             res.add(cur.val);
-//             cur = cur.right;
-//         }
-
-//         return res;
-//     }
-// }
