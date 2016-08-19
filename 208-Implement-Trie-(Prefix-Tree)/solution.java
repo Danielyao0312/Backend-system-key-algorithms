@@ -65,9 +65,9 @@ public class Trie {
                 p = p.next[index];
             }
         }
-        if (p == root) {
-            return null;
-        }
+        // if (p == root) {
+        //     return null;
+        // }
         return p;
     }
 
