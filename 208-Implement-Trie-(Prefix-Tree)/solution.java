@@ -1,9 +1,16 @@
+/*
+using for loop instead of using recursion
+
+更容易理解和记忆！！！
+*/
+
 class TrieNode {
-    boolean hasWord; // end of word
+    boolean isEnd;
     TrieNode[] next;
-    
+
+    // Initialize your data structure here.
     public TrieNode() {
-        hasWord = false;
+        isEnd = false;
         next = new TrieNode[26];
     }
 }
@@ -17,52 +24,53 @@ public class Trie {
 
     // Inserts a word into the trie.
     public void insert(String word) {
-        root = put(root, word, 0);
-    }
-    
-    private TrieNode put(TrieNode node, String str, int d) {
-        if (node == null) {
-            node = new TrieNode();
+        TrieNode p = root;
+
+        for (int i = 0; i < word.length(); i++) {
+            int index = word.charAt(i) - 'a';
+
+            if (p.next[index] == null) {   //不存在这个节点，自己造一个，连接到 p, 在把 p 移动到子节点
+                TrieNode temp = new TrieNode();
+                p.next[index] = temp;
+                p = temp;
+            } else {  // 存在这个节点！
+                p = p.next[index];   // 把 p 指针挪到子节点
+            }
         }
-        if (d == str.length()) {
-            node.hasWord = true;
-            return node;
-        }
-        int c = str.charAt(d) - 'a';
-        node.next[c] = put(node.next[c], str, d + 1);
-        return node;
+        p.isEnd = true;
     }
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
-        TrieNode node = get(root, word, 0);  // 找到这个单词的最后一个字母节点
-        if (node == null) {
-            return false;
-        }
-        return node.hasWord;  // 看看是不是最后的那个字母
+        TrieNode p = searchNode(word);
+        return (p != null && p.isEnd);
     }
-    
-    private TrieNode get(TrieNode node, String str, int d) {
-        if (node == null) {
-            return null;
-        }
-        if (d == str.length()) {
-            return node;
-        }
-        int c = str.charAt(d) - 'a';
-        return get(node.next[c], str, d + 1); //往上一层一层地返回最后的那个节点
-    }
-    
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
-        TrieNode node = get(root, prefix, 0);
-        if (node == null) {
-            return false;
-        }
-        return true;
+        TrieNode p = searchNode(prefix);
+        return p != null;   //如果只写一个 return， 就写 什么时候为 true 的那个条件！！！
     }
+
+    private TrieNode searchNode(String str) {
+        TrieNode p = root;
+
+        for (int i = 0; i < str.length(); i++) {
+            int index = str.charAt(i) - 'a';
+
+            if (p.next[index] == null) {  //中间如果匹配不上，就找不到
+                return null;
+            } else {
+                p = p.next[index];
+            }
+        }
+        if (p == root) {
+            return null;
+        }
+        return p;
+    }
+
 }
 
 // Your Trie object will be instantiated and called as such:
