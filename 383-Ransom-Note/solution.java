@@ -15,15 +15,11 @@ public class Solution {
         int[] count = new int[26];
 
         for (int i = 0; i < magazine.length(); i++) {
-        	int index = magazine.charAt(i) - 'a';
-        	count[index]++;
+        	count[magazine.charAt(i) - 'a']++;
         }		
 
         for (int i = 0; i < ransomNote.length(); i++) {
-        	int index = ransomNote.charAt(i) - 'a';
-        	count[index] --;
-
-        	if (count[index] < 0) {
+        	if (--count[ransomNote.charAt(i) - 'a'] < 0) { // --在前， 先减再判断; --在后， 先判断，在减去
         		return false;
         	}
         }			
