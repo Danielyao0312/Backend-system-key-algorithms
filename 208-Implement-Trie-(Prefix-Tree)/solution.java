@@ -1,9 +1,9 @@
 class TrieNode {
-    boolean eow; // end of word
+    boolean hasWord; // end of word
     TrieNode[] next;
     
     public TrieNode() {
-        eow = false;
+        hasWord = false;
         next = new TrieNode[26];
     }
 }
@@ -25,7 +25,7 @@ public class Trie {
             node = new TrieNode();
         }
         if (d == str.length()) {
-            node.eow = true;
+            node.hasWord = true;
             return node;
         }
         int c = str.charAt(d) - 'a';
@@ -39,7 +39,7 @@ public class Trie {
         if (node == null) {
             return false;
         }
-        return node.eow;  // 看看是不是最后的那个字母
+        return node.hasWord;  // 看看是不是最后的那个字母
     }
     
     private TrieNode get(TrieNode node, String str, int d) {
