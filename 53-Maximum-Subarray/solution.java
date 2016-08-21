@@ -1,38 +1,22 @@
-// similarly to best time to buy and sell stock
-// calculate prefixSum[], the biggest difference between prefixSum, is the result.
-// when calculate sum, always find the minSum before current element, 
+/*
+using prefixSum calculate the Sn
+找到两个 sn, 使得后面的 si - sj 最大， (i > j) 
+
+
+*/
 
 public class Solution {
-    // public int maxSubArray(int[] nums) {
-    //     if (nums == null || nums.length == 0) {
-    //         return 0;
-    //     }
-        
-    //     int sum = 0, minSum = 0, max = Integer.MIN_VALUE;
-    //     for (int i = 0; i < nums.length; i++) {
-    //         sum += nums[i]; // 前 i 项和
-    //         max = Math.max(max, sum - minSum); // max is globally the max, compare it with the sum - minSum
-    //         minSum = Math.min(minSum, sum); // sofar minSum
-            
-            
-    //     }
-    //     return max;
-    // }
-    
     public int maxSubArray(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
+        int minSum = Integer.MAX_VALUE;
+        int sum = 0;
+        int ans = Integer.MIN_VALUE;
         
-        int maxEndingHere = 0;
-        int maxSofar = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
-            if (maxEndingHere < 0) {
-                maxEndingHere = 0;
-            }
-            maxEndingHere += nums[i];
-            maxSofar = Math.max(maxSofar, maxEndingHere);
+            minSum = Math.min(minSum, sum);
+            
+            sum += nums[i];
+            ans = Math.max(ans, sum - minSum);
         }
-        return maxSofar;
+        return ans;
     }
 }
