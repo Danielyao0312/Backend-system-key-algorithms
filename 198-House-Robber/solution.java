@@ -22,15 +22,15 @@ public class Solution {
     	}
         int n = nums.length;
 
-        int[] dp = new int[n + 1];
+        int[] dp = new int[2];
 
         dp[0] = 0;
         dp[1] = nums[0];
         
         for (int i = 2; i <= n; i++) {
-        	dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]); //出错点，下标的对应，应该为 i - 1
+        	dp[i % 2] = Math.max(dp[(i - 1) % 2], dp[(i - 2) % 2] + nums[i - 1]); //出错点，下标的对应，应该为 i - 1
         }
 
-        return dp[n];
+        return dp[n % 2];
     }
 }
