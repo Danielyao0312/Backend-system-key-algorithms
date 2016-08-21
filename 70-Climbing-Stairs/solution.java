@@ -15,15 +15,27 @@ public class Solution {
         }
         
         // int[] f = new int[n + 1];
-        int[] f = new int[2];
+        int[] f = new int[3];
         f[0] = 1;
         f[1] = 1;
         
         for (int i = 2; i < n + 1; i++) {
-            f[i % 2] = f[(i - 1) % 2] + f[(i - 2) % 2];
+            f[i % 3] = f[(i - 1) % 3] + f[(i - 2) % 3];
         }
         
-        return f[n % 2];
+        return f[n % 3];
         
+        //best solution
+        // if (n <= 1) {
+        //     return 1;
+        // }
+        // int last = 1, lastlast = 1;
+        // int now = 0;
+        // for (int i = 2; i <= n; i++) {
+        //     now = last + lastlast;
+        //     lastlast = last;
+        //     last = now;
+        // }
+        // return now;
     }
 }
