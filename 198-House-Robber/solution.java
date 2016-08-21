@@ -7,8 +7,7 @@ function:  1. 如果 nums[i] 被抢，
           2. 如果 nums[i] 不被抢,
            dp[i] = dp[i - 1]
            
-           取两者的最大值为 dp[i] !!!!
-
+           取两者的最大值为 dp[i] !!!
 initial: dp[0] = 0, dp[1] = nums[0];
 
 answer: dp[n];
@@ -22,15 +21,15 @@ public class Solution {
     	}
         int n = nums.length;
 
-        int[] dp = new int[2];
+        int[] dp = new int[3];
 
         dp[0] = 0;
         dp[1] = nums[0];
         
-        for (int i = 2; i <= n; i++) {
-        	dp[i % 2] = Math.max(dp[(i - 1) % 2], dp[(i - 2) % 2] + nums[i - 1]); //出错点，下标的对应，应该为 i - 1
+        for (int i = 2; i <= n; i++) {  // 滚动数组的长度，取决于，跟当前状态有关的变量的长度！！！
+        	dp[i % 3] = Math.max(dp[(i - 1) % 3], dp[(i - 2) % 3] + nums[i - 1]); //出错点，下标的对应，应该为 i - 1
         }
 
-        return dp[n % 2];
+        return dp[n % 3];
     }
 }
