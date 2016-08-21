@@ -1,4 +1,5 @@
 // hashmap 统计两个串的频率即可
+//一遍 bug free
 
 public class Solution {
     public boolean isAnagram(String s, String t) {
