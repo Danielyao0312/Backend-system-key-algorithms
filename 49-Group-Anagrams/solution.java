@@ -1,50 +1,39 @@
 /*
-1. group them the strings => 
-hashmap:
-key : sorted string : aet
-values: string itself : ate, eat, tea....
+word => sort => as key
+hashmap:  key : aet (sorted string), value :[ate, eat, tea] => arraylist
 
-2. traverse the hashmap, put values into res
-
+1. put into hashmap
+2. put all values into the result
 */
 
 public class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
+        
         List<List<String>> res = new ArrayList<>();
-        Map<String, List<String>> map = new HashMap<>();
+        HashMap<String, List<String>> map = new HashMap<>();
+        
+        if (strs == null || strs.length == 0) {
+            return res;
+        }
         
         for (String str : strs) {
             String sorted = sort(str);
+            
             if (!map.containsKey(sorted)) {
-                map.put(sorted, new ArrayList<String>());
-            } 
-            map.get(sorted).add(str);
+                List<String> temp = new ArrayList<>();
+                temp.add(str);
+                map.put(sorted, temp);
+            } else {
+                map.get(sorted).add(str);
+            }
         }
-        for (List<String> list : map.values()) {
-            res.add(list);
+        
+        for (List<String> sub : map.values()) {
+            res.add(sub);
         }
         return res;
     }
     
-    // apple => a1e1l1p2 : O(n)    //实际运行速度很慢！ 考虑该方法 optional
-    private String labelStr(String str) {
-        int[] count = new int[256];
-        for (int i = 0; i < str.length(); i++) {
-            // counting sort :
-            // 下标对应字符的 ascii 码，value 对应的是字符个数！
-            count[str.charAt(i)]++; 
-        }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 256; i++) {
-            if (count[i] > 0){
-                sb.append((char)i).append(count[i]);
-            }
-        }
-        return sb.toString();
-    }
-    
-    
-    //sort: apple => aelpp:  O(nlogn)  // 数字不大的时候，实际运行速度快！
     private String sort(String str) {
         char[] arr = str.toCharArray();
         Arrays.sort(arr);
