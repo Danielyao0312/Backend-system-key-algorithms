@@ -24,19 +24,13 @@ public class Solution {
 
         int[] dp = new int[n + 1];
 
-        // dp[0] = 0;
-        // dp[1] = nums[0];
-        int last = nums[0];
-        int lastlast = 0;
-        int curt = 0;
+        dp[0] = 0;
+        dp[1] = nums[0];
         
         for (int i = 2; i <= n; i++) {
-            curt = Math.max(lastlast + nums[i - 1], last);
-            lastlast = last;
-            last = curt;
-        // 	dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]); //出错点，下标的对应，应该为 i - 1
+        	dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]); //出错点，下标的对应，应该为 i - 1
         }
 
-        return last;
+        return dp[n];
     }
 }
