@@ -3,31 +3,24 @@ public class Solution {
         if (source == null || target == null) {
             return -1;
         }
-        if (source.length() < target.length()) {
-            return -1;
-        }
-        // if (source.length() == 0 && target.length() == 0) {
-        //     return 0;
-        if (target.length() == 0) {
-            return 0;    
-        }
+        int slen = source.length();
+        int tlen = target.length();
         
-        char[] ss = source.toCharArray();
-        char[] tt = target.toCharArray();
+        if (slen < tlen)    return -1;
+        if (tlen == 0)      return 0;
         
-        int i = 0, j = 0;
-        for (i = 0; i < ss.length - tt.length + 1; i++) {
-            if (ss[i] == tt[0]) {
-                for (j = 0; j < tt.length; j++) {
-                    if (ss[i + j] != tt[j]) {
-                        break;
-                    }
+        int i, j;
+        for (i = 0; i <= slen - tlen; i++) {
+            for (j = 0; j < tlen; j++) {
+                if (source.charAt(i + j) != target.charAt(j)) {
+                    break;
                 }
-                if (j == tt.length) {
-                    return i;
-                }
+            }
+            if (j == tlen) {
+                return i;
             }
         }
         return -1;
+        
     }
 }
