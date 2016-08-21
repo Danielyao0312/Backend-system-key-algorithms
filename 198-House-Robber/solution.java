@@ -29,7 +29,7 @@ public class Solution {
         dp[1] = nums[0];
 
         for (int i = 2; i <= n; i++) {
-        	dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
+        	dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]); //出错点，下标的对应，应该为 i - 1
         }
 
         return dp[n];
