@@ -16,18 +16,15 @@ public class Solution {
         
         String longest = "";
         for (int i = 0; i < s.length(); i++) {
+              // get longest palindrome with center of i
             String temp = helper(s, i, i);
+            longest = temp.length() > longest.length() ? temp : longest;
             
-            if (temp.length() > longest.length()) {
-                longest = temp;
-            }
-        }
-        
-        for (int i = 0; i < s.length() - 1; i++) {
-            String temp = helper(s, i, i + 1);
-            if (temp.length() > longest.length()) {
-                longest = temp;
-            }
+            
+              // get longest palindrome with center of i, i+ 1
+            temp = helper(s, i, i + 1);
+            longest = temp.length() > longest.length() ? temp : longest;
+            
         }
         
         return longest;
