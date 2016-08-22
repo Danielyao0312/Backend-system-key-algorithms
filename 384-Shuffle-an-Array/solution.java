@@ -2,18 +2,14 @@ public class Solution {
     
     private int[] nums;
     private int[] original;
-    // private Random rand;
 
     public Solution(int[] nums) {
         this.original = nums;
         this.nums = nums.clone();
-        // this.rand = new Random();
     }
     
     /** Resets the array to its original configuration and return it. */
     public int[] reset() {
-        // nums = original.clone();
-        // return nums;
         return original;
     }
     
