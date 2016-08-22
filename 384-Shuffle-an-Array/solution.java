@@ -19,8 +19,8 @@ public class Solution {
         int size = nums.length;
         
         for (int i = 0; i < size; i++) {
-            int pos = rand.nextInt(size - i); //不太理解
-            swap(nums, i, i + pos);  // ？？？？为什么是 i + pos?
+            int pos = rand.nextInt(size); //不太理解
+            swap(nums, i, pos);  // ？？？？为什么是 i + pos?
         }
         
         return nums;
