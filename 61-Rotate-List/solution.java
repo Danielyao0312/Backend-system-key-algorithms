@@ -4,40 +4,45 @@
  *     int val;
  *     ListNode next;
  *     ListNode(int x) { val = x; }
- * 
  * }
  */
 public class Solution {
-    //how to solve: first round, go through the linked list, get the length : len
-    //run len - k steps, 1->2->3->null   4->5->
     public ListNode rotateRight(ListNode head, int k) {
-        //corner cases:
-        if(k == 0 || head == null){
+        if (head == null || head.next == null || k == 0) {
             return head;
         }
         
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
+        int len = getLen(head);
+        k = k % len;
         
-        //get the length of the list
+        if (k == 0) {
+            return head;
+        }
+        
+        ListNode slow = head, fast = head;
+        for (int i = 0; i < k; i++) {
+            fast = fast.next;
+        }
+        
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        // slow will point to the node previous to the rotated one
+        
+        ListNode newHead = slow.next;
+        slow.next = null;
+        fast.next = head;
+        
+        return newHead;
+    }
+    
+    private int getLen(ListNode head) {
         int len = 0;
-        ListNode p = dummy;
-        while(p.next != null){
+        while (head != null) {
+            head = head.next;
             len++;
-            p = p.next;
         }
-        
-        ListNode q = dummy;
-        //stop at k position
-        for(int i = len - k % len; i > 0; i--){
-            q = q.next;
-        }
-        
-        //connect the first and second part of the list
-        p.next=dummy.next; //Do the rotation
-        dummy.next=q.next;
-        q.next=null;
-        
-        return dummy.next;
+        return len;
     }
 }
