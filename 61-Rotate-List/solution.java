@@ -16,7 +16,7 @@ public class Solution {
         k = k % len;
         
         if (k == 0) {
-            return head;
+            return head; //出错点！！！corner case, 当 k 为长度的整数倍时，什么也不用做!
         }
         
         ListNode slow = head, fast = head;
