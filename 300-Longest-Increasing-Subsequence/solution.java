@@ -14,7 +14,6 @@ public class Solution {
         }
         
         int ans = Integer.MIN_VALUE;
-        int localMax = 0;
         int n = nums.length;
         int[] dp = new int[n];
         
