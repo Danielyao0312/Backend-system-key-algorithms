@@ -4,9 +4,17 @@ public class Solution {
             return 0;
         }
         
-        s = s.trim();
-        String[] arr = s.split("[ ]+");
+        int start = 0, end = s.length();
         
-        return arr[arr.length - 1].length();
+        while (end - 1 >= 0 && s.charAt(end - 1) == ' ') {
+            end --;
+        }
+        
+        for (int i = 0; i < end; i++) {
+            if (s.charAt(i) == ' ') {
+                start = i + 1;
+            }
+        }
+        return end - start;
     }
 }
