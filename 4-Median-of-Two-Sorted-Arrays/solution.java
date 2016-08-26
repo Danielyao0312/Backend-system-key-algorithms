@@ -11,7 +11,7 @@ public class Solution {
 	}
 	
 	// 重点理解！！！这一部分的代码，马帅版本
-    public static int kth(int[] nums1, int s1, int[] nums2, int s2, int k) {
+    public int kth(int[] nums1, int s1, int[] nums2, int s2, int k) {
         if (nums1.length - s1 > nums2.length - s2) {
             return kth(nums2, s2, nums1, s1, k);
         }
