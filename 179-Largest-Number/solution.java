@@ -40,13 +40,20 @@ public class Solution {
     public String largestNumber(int[] num) {
         
         // cornercase: if all of nums are 0
+        // int index = 0;
+        // while (index < num.length && num[index] == 0) {
+        //     index ++;
+        // }
+        // if (index == num.length) {
+        //     return "0";
+        // }
+        
         int index = 0;
-        while (index < num.length && num[index] == 0) {
-            index ++;
-        }
+        for (; index < num.length && num[index] == 0; index++);
         if (index == num.length) {
             return "0";
         }
+        
         
         // convert to string
         String[] numStr = new String[num.length];
