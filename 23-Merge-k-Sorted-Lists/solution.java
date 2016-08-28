@@ -6,19 +6,6 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-
-/*
-using divide and conquer:
-1. divide into two part;
-2. merge left part to list a
-3. merge right part to list b
-4. merge a and b.
-
-time complexity: n = total number of nodes in all lists.
- O(nlogk) 每层需要 O(n) 时间去 merge, 一共有 logk 层
- 
-*/ 
-
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) {
@@ -27,39 +14,30 @@ public class Solution {
         if (lists.length == 1) {
             return lists[0];
         }
-        return mergeHelper(lists, 0, lists.length - 1);
-    }
-    
-    private ListNode mergeHelper(ListNode[] lists, int start, int end) {
-        if (start >= end) {
-            return lists[start];
-        }
-        int mid = start + (end - start) / 2;
-        ListNode left = mergeHelper(lists, start, mid);
-        ListNode right = mergeHelper(lists, mid + 1, end);
         
-        return mergeTwoLists(left, right);
-    }
-    
-    private ListNode mergeTwoLists(ListNode h1, ListNode h2) {
-        ListNode dummy = new ListNode(0);
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, new Comparator<ListNode>() {
+            @Override
+            public int compare(ListNode o1, ListNode o2) {
+                return o1.val - o2.val;
+            }
+        });
+
+        ListNode dummy = new ListNode(-1);
         ListNode p = dummy;
-        
-        while (h1 != null && h2 != null) {
-            if (h1.val < h2.val) {
-                p.next = h1;
-                h1 = h1.next;
-                p = p.next;
-            } else {
-                p.next = h2;
-                h2 = h2.next;
-                p = p.next;
+
+        for (ListNode i : lists) {
+            if (i != null) {
+                pq.add(i);
             }
         }
-        if (h1 != null) {
-            p.next = h1;
-        } else {
-            p.next = h2;
+
+        while (!pq.isEmpty()) {
+            ListNode cur = pq.poll();
+            p.next = cur;
+            p = p.next;
+            if (cur.next != null) {
+                pq.add(cur.next);
+            }
         }
         
         return dummy.next;
