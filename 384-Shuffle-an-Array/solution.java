@@ -2,23 +2,26 @@ public class Solution {
     
     private int[] nums;
     private int[] original;
+    private Random rand;
 
     public Solution(int[] nums) {
-        this.nums = nums;
-        this.original = nums.clone();
+        this.original = nums;
+        this.nums = nums.clone();
+        this.rand = new Random();
     }
     
     /** Resets the array to its original configuration and return it. */
     public int[] reset() {
-        return original;
+        nums = original.clone();
+        return nums;
     }
     
     /** Returns a random shuffling of the array. */
     public int[] shuffle() {
-        Random rand = new Random();
         
         int size = nums.length;
-        for (int i = 0; i < nums.length; i++) {
+        
+        for (int i = 0; i < size; i++) {
             int pos = rand.nextInt(size);
             swap(nums, i, pos);
         }
