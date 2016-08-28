@@ -12,10 +12,6 @@ public class Solution {
         int m = nums1.length - s1;  // length of nums1
         int n = nums2.length - s2;  // length of nums2
         
-        if (m > n) {
-            return findKth(nums2, s2, nums1, s1, k);
-        }
-        
         if (m <= 0) {
             return nums2[s2 + k - 1];
         }
