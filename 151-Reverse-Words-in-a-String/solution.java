@@ -1,15 +1,16 @@
 public class Solution {
-    // solution 1: 按空格切分
+    // solution 1:
     public String reverseWords(String s) {
         
+        s = s.trim();
         String[] arr = s.split("[ ]+");
         StringBuilder sb = new StringBuilder();
         for (int i = arr.length - 1; i >= 0; i--) {
-            if (!arr[i].equals("")) {
-                sb.append(arr[i]).append(" ");
-            }
+            sb.append(arr[i]);
+            sb.append(" ");
         }
         
-        return sb.length() == 0 ? "" : sb.substring(0, sb.length() - 1);
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 }
