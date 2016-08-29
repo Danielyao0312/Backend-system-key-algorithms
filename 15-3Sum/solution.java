@@ -1,72 +1,49 @@
 /*
-Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+1. sort arr
+2. use two pointer: j, k   j go right , k go left,  find the triplet that addup to 0
 
-Note: The solution set must not contain duplicate triplets.
+remove dup:
+1. arr[i] == arr[i - 1]
+2. when sum == 0: 
+    arr[j] == arr[j - 1]  j++
+    arr[k] == arr[k + 1]  k--
 
-For example, given array S = [-1, 0, 1, 2, -1, -4],
-
-A solution set is:
-[
-  [-1, 0, 1],
-  [-1, -1, 2]
-]
-
-*/
-
-/*
-1. sort the nums
-
-2. for every element i in nums, use two pointer to find if there is a 2Sum = 0 - i => i + 2sum = 0?  
-become 2sum problem
-duplicate: make sure to skip duplicate
-
-add to res
-
-两个要去重的地方：
-1. fixed element (即nums[i]) 有重复要跳过
-2. 当 求和等于结果时, 需要把双指针左右两边重复的值跳过！
 */
 
 public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-    	List<List<Integer>> res = new ArrayList<>();
-    	if (nums == null || nums.length < 3) {
-    		return res;
-    	}
-
-    	Arrays.sort(nums);
-    	for (int i = 0; i < nums.length - 2; i++) {
-    		int cur = nums[i];
-    		if (i > 0 && nums[i] == nums[i - 1]){
-    			continue; //  to skip duplicate numbers; e.g [0,0,0,0]
-    		}
-    		int lo = i + 1;
-    		int hi = nums.length - 1;
-    		while (lo < hi) {
-    			int sum = cur + nums[lo] + nums[hi];
-    			if (sum == 0) {
-    				List<Integer> temp = new ArrayList<>();
-    				temp.add(cur);
-    				temp.add(nums[lo]);
-    				temp.add(nums[hi]);
-    				res.add(temp);
-    				lo ++;
-    				hi --;
-    				while (lo < hi && nums[lo] == nums[lo - 1]) {
-    					lo ++; // to skip duplicates
-    				}
-    				while (lo < hi && nums[hi] == nums[hi + 1]) {
-    					hi --; // to skip duplicates
-    				}
-    			} else if (sum < 0) {
-    				lo ++;
-    			} else {
-    				hi --;
-    			}
-    		}
-
-    	}
-    	return res;
-
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return res;
+        }
+        
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
+            int j = i + 1;
+            int k = nums.length - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == 0) {
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[j]);
+                    temp.add(nums[k]);
+                    res.add(temp);
+                    j ++;
+                    k --;
+                    while (j < k && nums[j] == nums[j - 1])     j ++;
+                    while (j < k && nums[k] == nums[k + 1])     k --;
+                } else if (sum < 0) {
+                    j ++;
+                } else {
+                    k --;
+                }
+            }
+        }
+        
+        return res;
     }
 }
