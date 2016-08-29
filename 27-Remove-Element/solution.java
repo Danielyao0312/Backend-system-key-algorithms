@@ -1,17 +1,12 @@
-
-
 public class Solution {
-    public int removeElement(int[] arr, int val) {
-        if (arr.length == 0) {
-            return 0;
-        }
-
+    public int removeElement(int[] nums, int val) {
         int m = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != val) {
-                arr[m++] = arr[i];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[m++] = nums[i];
             }
         }
+        
         return m;
     }
 }
