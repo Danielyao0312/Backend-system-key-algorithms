@@ -12,17 +12,20 @@ public class Solution {
     }
     
     private void dfs(List<List<Integer>> res, List<Integer> list, int[] nums, int target, int pos) {
+        if (target < 0) {
+            return;  // key point!!!
+        }
         if (target == 0) {
-            res.add(new ArrayList<Integer>(list));
-            return;
-        }else if(target < 0) { // key point!!!
+            if (!res.contains(list)){
+                res.add(new ArrayList<Integer>(list));
+            }
             return;
         }
         
         for(int i = pos; i < nums.length; i++) {
-            if (i > pos && nums[i] == nums[i - 1]) {
-                continue;  // avoid duplicates
-            }
+            // if (i > pos && nums[i] == nums[i - 1]) {
+            //     continue;  // avoid duplicates
+            // }
             
             list.add(nums[i]);
             dfs(res, list, nums, target - nums[i], i);
