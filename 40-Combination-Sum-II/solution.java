@@ -15,13 +15,18 @@ public class Solution {
         if (target == 0) {
             res.add(new ArrayList<Integer>(list));
             return;
-        }else if(target < 0) { // key point!!!
-            return;
         }
+        // else if(target < 0) { // key point!!!
+        //     return;
+        // }
         
         for(int i = start; i < nums.length; i++) {
+            if (target < 0) {
+                break;
+            }
+            
             if (i > start && nums[i] == nums[i - 1]) {
-                continue;  // avoid duplicates
+                continue;  // avoid duplicates,  key point!!!
             }
             
             list.add(nums[i]);
