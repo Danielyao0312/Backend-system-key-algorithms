@@ -16,16 +16,16 @@ public class Solution {
             return;  // key point!!!
         }
         if (target == 0) {
-            if (!res.contains(list)){
-                res.add(new ArrayList<Integer>(list));
-            }
+            // if (!res.contains(list)){
+            res.add(new ArrayList<Integer>(list));
+            // }
             return;
         }
         
         for(int i = pos; i < nums.length; i++) {
-            // if (i > pos && nums[i] == nums[i - 1]) {
-            //     continue;  // avoid duplicates
-            // }
+            if (i > pos && nums[i] == nums[i - 1]) {
+                continue;  // avoid duplicates
+            }
             
             list.add(nums[i]);
             dfs(res, list, nums, target - nums[i], i);
