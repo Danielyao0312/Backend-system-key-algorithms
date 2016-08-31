@@ -20,9 +20,9 @@ public class Solution {
         }
         
         for(int i = pos; i < nums.length; i++) {
-            // if (i > pos && nums[i] == nums[i - 1]) {
-            //     continue;  // avoid duplicates
-            // }
+            if (i > pos && nums[i] == nums[i - 1]) {
+                continue;  // avoid duplicates
+            }
             
             list.add(nums[i]);
             dfs(res, list, nums, target - nums[i], i);
