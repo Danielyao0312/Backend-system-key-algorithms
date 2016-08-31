@@ -16,8 +16,8 @@ public class Solution {
             return;  // key point!!!
         }
         if (target == 0) {
-            // if (!res.contains(list)){
-            res.add(new ArrayList<Integer>(list));
+            // if (!res.contains(list)){ // 另外一种 avoid duplicate 的方法，如果想不清楚下面那个！
+                res.add(new ArrayList<Integer>(list));
             // }
             return;
         }
