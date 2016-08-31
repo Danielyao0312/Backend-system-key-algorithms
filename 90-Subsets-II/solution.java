@@ -1,8 +1,4 @@
 
-
-
-
-
 public class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
 		List<List<Integer>> res = new ArrayList<>();
@@ -19,7 +15,7 @@ public class Solution {
     	res.add(new ArrayList<Integer>(subres));
 
     	for(int i = pos; i < nums.length; i++) {
-    	    if(i != pos && nums[i] == nums[i - 1])   continue;
+    	    if(i > pos && nums[i] == nums[i - 1])   continue;
     	    
     		subres.add(nums[i]);
     		helper(res, subres, nums, i + 1);
