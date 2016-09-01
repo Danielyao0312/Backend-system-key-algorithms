@@ -8,11 +8,7 @@ public class Solution {
         
         int i = 0;  //left
         int j = arr.length - 1;  //right
-        
         while (i < j) {
-            // if (i != 0 && arr[i] == arr[i -1]) {
-            //     continue;
-            // }
             int sum = arr[i] + arr[j];
             if (sum == target) {
                 res[0] = i + 1;
