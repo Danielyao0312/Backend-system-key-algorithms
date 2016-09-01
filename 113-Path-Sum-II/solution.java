@@ -21,6 +21,9 @@ public class Solution {
     }
 
     private void helper(List<List<Integer>> res, List<Integer> path, TreeNode root, int sum) {
+        if (root == null) {
+            return;
+        }
 
         if(root.left == null && root.right == null) {     //meet root point
             if (sum - root.val == 0) {
@@ -32,12 +35,8 @@ public class Solution {
         }
         
         path.add(root.val);
-        if(root.right != null) { 
-            helper(res, path, root.right, sum - root.val);
-        }
-        if (root.left != null) {
-            helper(res, path, root.left, sum - root.val);
-        }
+        helper(res, path, root.left, sum - root.val);
+        helper(res, path, root.right, sum - root.val);
         path.remove(path.size() - 1);
     }
 }
