@@ -24,9 +24,8 @@ public class Solution {
         for (i = 0; i < s.length(); i++) {
             
             while (j < s.length() && map[s.charAt(j)] == -1) {  // 无重复的时候，把 j 往前挪动,  -1表示未出现过
-                map[s.charAt(j)] = 0; // 把 j 位设置为重复，0表示出现过
-                ans = Math.max(ans, j - i + 1);
-                j ++;
+                map[s.charAt(j++)] = 0; // 把 j 位设置为重复，0表示出现过
+                ans = Math.max(ans, j - i);
             }  
             
             map[s.charAt(i)] = -1; // i 位对应的字符, 更新回未出现过
