@@ -12,27 +12,32 @@ public class Solution {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         
-        dfs(res, path, root, sum);
+        if (root == null) {
+            return res;
+        }
+        
+        helper(res, path, root, sum);
         return res;
     }
-    
-    private void dfs(List<List<Integer>> res, List<Integer> path, TreeNode root, int sum){
-        if(root == null) return;
-        
-        sum -= root.val;
-        
-        if(root.left == null && root.right == null){
-            if(sum == 0){
+
+    private void helper(List<List<Integer>> res, List<Integer> path, TreeNode root, int sum) {
+
+        if(root.left == null && root.right == null) {     //meet root point
+            if (sum - root.val == 0) {
                 path.add(root.val);
-                res.add(new ArrayList<Integer>(path));
+                res.add(new ArrayList<>(path));
                 path.remove(path.size() - 1);
             }
             return;
         }
         
         path.add(root.val);
-        dfs(res, path, root.left, sum);
-        dfs(res, path, root.right, sum);
+        if(root.right != null) { 
+            helper(res, path, root.right, sum - root.val);
+        }
+        if (root.left != null) {
+            helper(res, path, root.left, sum - root.val);
+        }
         path.remove(path.size() - 1);
     }
 }
